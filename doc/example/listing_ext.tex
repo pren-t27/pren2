@@ -1,0 +1,12 @@
+\section{Listing from an external file}
+Source code can also be included from an external file. This has the advantage 
+that the Documentation is always in sync with the Source code. It is also 
+possible to include only specific lines. If you use this feature, make sure to 
+check the line numbers every time you change the source file. \\
+Example for this document, this time with LaTeX syntax:
+\lstsettinglatex
+\lstinputlisting[firstline=1, lastline=5]{../example/example.tex}    % Include 
+
+\subsection{Code}
+\lstsettinglatex                    % Setting up for LaTeX highlighting
+\lstinputlisting{listing_ext.tex}   % Include external file listing_ext.tex

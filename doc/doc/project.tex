@@ -1,0 +1,83 @@
+\section{Projektmanagement}
+Das Modul PREN ist ein interdisziplinäres Modul. Von jeder der Fachrichtungen 
+Informatik, Elektrotechnik und Maschinenbau ist mindestens eine Person pro 
+Gruppe vertreten. Das Team 27 setzt sich wie folgt zusammen:
+\begin{itemize}
+    \item 3 Informatiker
+    \item 3 Maschinenbauer
+    \item 1 Elektrotechniker
+\end{itemize}
+Zu Beginn des Moduls wurden den Mitgliedern des Teams verschiedene Funktionen 
+zugewiesen, um eine Struktur und somit Ansprechpersonen innerhalb des Teams zu 
+erhalten. Ersichtlich ist dies in folgendem Organigramm:
+\newcommand\orgnode[6][]{
+    \node[#1] at (#2) {
+        \boxed{
+            \parbox{40pt} {%
+                \includegraphics[width=40pt]{#3}}%
+            \parbox{10pt}{\mbox{}}%  
+            \parbox{\dimexpr4.0cm-30pt\relax}{
+                \textbf{#4}\\
+                [.4ex]\textit{#5}\\
+                [.4ex]#6\\}%
+        }
+    };
+}
+\begin{figure}[h!]
+    % from http://tex.stackexchange.com/questions/170154/organisation-chart-in-latex-using-tikz
+    \centering
+    \begin{tikzpicture}
+        \orgnode
+            {0,0}
+            {../fig/takuonen.png}
+            {Peter Kuonen}
+            {Informatik}
+            {Projektleiter}
+        \orgnode
+            {-6,-4}
+            {../fig/tawinz.png}
+            {Daniel Winz}
+            {Elektrotechnik}
+            {Bereichsleiter E}
+        \orgnode
+            {0,-4}
+            {../fig/mamaisse.png}
+            {Andriu Maissen}
+            {Maschinenbau}
+            {Bereichsleiter M}
+        \orgnode
+            {6,-4}
+            {../fig/taneidha.png}
+            {Simon Neidhart}
+            {Informatik}
+            {Bereichsleiter I}
+        \orgnode
+            {0,-8}
+            {../fig/tfkueng.png}
+            {Yannik Küng}
+            {Maschinenbau}
+            {Projektmitarbeiter}
+        \orgnode
+            {0,-12}
+            {../fig/tfmathis.png}
+            {Daniel Mathis}
+            {Maschinenbau}
+            {Projektmitarbeiter}
+        \orgnode
+            {6,-8}
+            {../fig/tcwespi.png}
+            {Kevin Wespi}
+            {Informatik}
+            {Protokollführer}
+        \draw[-latex, thick] (0,-1) -- (0,-2) -- (-6,-2) -- (-6,-3);
+        \draw[-latex, thick] (0,-1) -- (0,-2) -- (0,-2) -- (0,-3);
+        \draw[-latex, thick] (0,-1) -- (0,-2) -- (6,-2) -- (6,-3);
+        \draw[-latex, thick] (-2.4,-4) -- (-2.9,-4) -- (-2.9,-8) -- (-2.4, -8);
+        \draw[-latex, thick] (-2.4,-4) -- (-2.9,-4) -- (-2.9,-12) -- (-2.4, -12);
+        \draw[-latex, thick] (3.6,-4) -- (3.1,-4) -- (3.1,-8) -- (3.6, -8);
+    \end{tikzpicture}
+    \caption{Organigramm}
+    \label{fig:Organigramm}
+\end{figure}
+
+\subsection{Projektplanung}
