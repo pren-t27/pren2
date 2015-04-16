@@ -1,0 +1,160 @@
+\subsection{Test Elektronik}
+
+\subsubsection{Test Energieversorgung}
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{p{0.11\textwidth}p{0.4\textwidth}p{0.3\textwidth}p{0.1\textwidth}}
+        \rowcolor{gray} ID & Test & Erwartet & Ergebnis \\
+        Supply-001   &
+            Leerlaufspannung 48\si{\volt} &
+            $48\si{\volt} \pm 1\si{\volt}$ &
+            \boxed{} \\
+        Supply-002   &
+            Leerlaufspannung 5\si{\volt} &
+            $5\si{\volt} \pm 0.1\si{\volt}$ &
+            \boxed{} \\
+    \end{zebratabular}
+    \caption{Test Energieversorgung}
+\end{table}
+\FloatBarrier
+
+\subsubsection{Test BLDC Treiber}
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{p{0.11\textwidth}p{0.4\textwidth}p{0.3\textwidth}p{0.1\textwidth}}
+        \rowcolor{gray} ID & Test & Erwartet & Ergebnis \\
+        BLDC-001 &
+            Anlaufen &
+            Anlaufen und Umschalten in Autokommutierung &
+            \boxed{} \\
+        BLDC-002 &
+            Änderung Leistung &
+            Die Leistung (PWM) kann via SPI eingestellt werden. &
+            \boxed{} \\
+        BLDC-003 &
+            Drehzahlregelung &
+            Die Drehzahl kann via SPI eingestellt werden und wird geregelt. &
+            \boxed{} \\
+    \end{zebratabular}
+    \caption{Test BLDC Treiber}
+\end{table}
+\FloatBarrier
+
+\subsubsection{Test Schrittmotortreiber}
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{p{0.11\textwidth}p{0.4\textwidth}p{0.3\textwidth}p{0.1\textwidth}}
+        \rowcolor{gray} ID & Test & Erwartet & Ergebnis \\
+        Step-001 &
+            Nullen &
+            Selbständiges Nullen &
+            \boxed{} \\
+        Step-002 &
+            Position anfahren &
+            Vorgegebene Position wird angefahren &
+            \boxed{} \\
+    \end{zebratabular}
+    \caption{Test Schrittmotortreiber}
+\end{table}
+\FloatBarrier
+
+\subsubsection{Test Gleichstrommotortreiber}
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{p{0.11\textwidth}p{0.4\textwidth}p{0.3\textwidth}p{0.1\textwidth}}
+        \rowcolor{gray} ID & Test & Erwartet & Ergebnis \\
+        DC-001 &
+            Drehrichtung &
+            Die Drehrichtung des DC Motors kann mittels DIR Signal vorgegeben werden. &
+            \boxed{} \\
+        DC-002 &
+            Geschwindigkeit &
+            Die Geschwindigkeit des DC Motors kann mittels PWM Signal beeinflusst werden. &
+            \boxed{} \\
+    \end{zebratabular}
+    \caption{Test Gleichstrommotortreiber}
+\end{table}
+\FloatBarrier
+
+\subsubsection{Test Sensoren}
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{p{0.11\textwidth}p{0.4\textwidth}p{0.3\textwidth}p{0.1\textwidth}}
+        \rowcolor{gray} ID & Test & Erwartet & Ergebnis \\
+        Sensor-001 &
+            Magnet bei Endanschlag Turm &
+            Signal low &
+            \boxed{} \\
+        Sensor-002 &
+            Magnet nicht bei Endanschlag Turm &
+            Signal high &
+            \boxed{} \\
+        Sensor-003 &
+            Beförderungsband eingefahren (Balllager voll) &
+            Signal high &
+            \boxed{} \\
+        Sensor-004 &
+            Beförderungsband nicht eingefahren (Balllager nicht voll) &
+            Signal low &
+            \boxed{} \\
+        Sensor-005 &
+            Beförderungsband ausgefahren (Balllager leer) &
+            Signal high &
+            \boxed{} \\
+        Sensor-006 &
+            Beförderungsband nicht ausgefahren (Balllager nicht leer) &
+            Signal low &
+            \boxed{} \\
+    \end{zebratabular}
+    \caption{Test Sensoren}
+\end{table}
+\FloatBarrier
+
+\subsubsection{Test Kontrollplatine}
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{p{0.11\textwidth}p{0.4\textwidth}p{0.3\textwidth}p{0.1\textwidth}}
+        \rowcolor{gray} ID & Test & Erwartet & Ergebnis \\
+        FRDM-001 &
+            Echo von Shell &
+            gesendete Bytes werden korrekt zurückgesendet &
+            \boxed{} \\
+        FRDM-002 &
+            Ansteuerung DC Motor &
+            Drehzahl und Drehrichtung des DC Motors kann via Shell variiert werden &
+            \boxed{} \\
+        FRDM-003 &
+            Ansteuerung BLDC Motor &
+            BLDC Motor kann via Shell angesteuert werden. &
+            \boxed{} \\
+        FRDM-004 &
+            Nullung Schrittmotor &
+            Schrittmotor kann via Shell genullt werden. &
+            \boxed{} \\
+        FRDM-005 &
+            Ansteuerung Schrittmotor &
+            Schrittmotor kann via Shell an eine gegebene Position gefahren werden. 
+            \boxed{} \\
+    \end{zebratabular}
+    \caption{Test Kontrollplatine}
+\end{table}
+\FloatBarrier
+
+\subsubsection{Test Bluetooth Modul}
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{p{0.11\textwidth}p{0.4\textwidth}p{0.3\textwidth}p{0.1\textwidth}}
+        \rowcolor{gray} ID & Test & Erwartet & Ergebnis \\
+        BT-001 &
+            Korrekte Übertragung eines Bytes in Richtung Computer $\to$ FRDM-KL25Z &
+            Byte korrekt übertragen &
+            \boxed{} \\
+        BT-002 &
+            Korrekte Übertragung eines Bytes in Richtung FRDM-KL25Z $\to$ Computer &
+            Byte korrekt übertragen &
+            \boxed{} \\
+    \end{zebratabular}
+    \caption{Test Bluetooth Modul}
+\end{table}
+\FloatBarrier
+
