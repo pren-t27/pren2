@@ -5,3 +5,40 @@ ausgelegt. Durch das Aufwickeln des Bandes auf die Trommel werden die Bälle
 Richtung Beschleunigungsrad gezogen. Der Antrieb erfolgt durch einen 
 umgebauten Servomotor, welcher mittels Zahnriemen mit der Welle der Trommel 
 verbunden ist.
+
+\subsubsection{Auslegung}
+Als Servo dient ein HS85MG der Firma Hitec. Dieses ist wie folgt spezifiziert: 
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{lll}
+        \rowcolor{gray}
+        Parameter &
+            Wert bei 4.8\si{\volt} &
+            Wert bei 6.0\si{\volt} \\
+        Stellgeschwindigkeit (60\si{\degree}) &
+            0.16\si{\second} &
+            0.14\si{\second} \\
+        Drehmoment &
+            3.0\si{\kilogram\per\centi\metre} &
+            3.5\si{\kilogram\per\centi\metre} \\
+    \end{zebratabular}
+    \caption{Spezifikation Servomotor}
+\end{table}
+Dies ergibt folgende Spezifikationen für den sich daraus ergebenden DC Motor: 
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{lll}
+        \rowcolor{gray}
+        Parameter &
+            Wert bei 4.8\si{\volt} &
+            Wert bei 6.0\si{\volt} \\
+        Stellgeschwindigkeit (60\si{\degree}) &
+            62.5\si{\per\minute} &
+            71.4\si{\per\minute} \\
+        Drehmoment &
+            0.3\si{\newton\metre} &
+            0.35\si{\newton\metre} \\
+    \end{zebratabular}
+    \caption{Spezifikation DC Motor}
+\end{table}
+
