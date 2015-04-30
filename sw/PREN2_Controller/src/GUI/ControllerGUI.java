@@ -193,8 +193,7 @@ public class ControllerGUI extends javax.swing.JFrame {
         Graphics g = jPanelImage.getGraphics();
 
         g.drawImage(encodeImage(dst), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
-
-
+        
     }//GEN-LAST:event_jButtonGetImageActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
