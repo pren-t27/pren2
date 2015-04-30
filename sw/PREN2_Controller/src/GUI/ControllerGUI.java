@@ -37,13 +37,22 @@ public class ControllerGUI extends javax.swing.JFrame {
     java.awt.Point click_point, release_point;
 
     Point sub_topLeft, sub_bottomRight;
-    
+
     Mat imgFromCam;
     Mat backgroundSubMat;
 
     private void translatePoints(java.awt.Point click, java.awt.Point release) {
         sub_topLeft = new Point(click.x * 2, click.y * 2);
         sub_bottomRight = new Point(release.x * 2, release.y * 2);
+    }
+
+    private Mat turnMat(Mat inputMat) {
+        Point src_center = new Point(inputMat.cols() / 2, inputMat.rows() / 2);
+        Mat rot_mat = getRotationMatrix2D(src_center, 180, 1.0);
+        Mat dst = new Mat();
+        warpAffine(inputMat, dst, rot_mat, inputMat.size());
+
+        return dst;
     }
 
     /**
@@ -183,36 +192,28 @@ public class ControllerGUI extends javax.swing.JFrame {
     private void jButtonGetImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetImageActionPerformed
 
         imgFromCam = imgHandler.getImage();
-        
-        Point src_center= new Point(imgFromCam.cols()/2, imgFromCam.rows()/2);
-        Mat rot_mat = getRotationMatrix2D(src_center, 180, 1.0);
-        Mat dst = new Mat();
-        warpAffine(imgFromCam, dst, rot_mat, imgFromCam.size());
-        
-        
+
+        imgFromCam = turnMat(imgFromCam);
+
         Graphics g = jPanelImage.getGraphics();
 
-        g.drawImage(encodeImage(dst), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
-        
+        g.drawImage(encodeImage(imgFromCam), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
     }//GEN-LAST:event_jButtonGetImageActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Mat currentImage = imgHandler.getImage();
-        
-        Point src_center= new Point(currentImage.cols()/2, currentImage.rows()/2);
-        Mat rot_mat = getRotationMatrix2D(src_center, 180, 1.0);
-        Mat dst = new Mat();
-        warpAffine(currentImage, dst, rot_mat, currentImage.size());
-        
+
+        currentImage = turnMat(currentImage);
+
         Rect tmpl_rect = new Rect(sub_topLeft, sub_bottomRight);
-        backgroundSubMat = dst.submat(tmpl_rect);
-        
+        backgroundSubMat = currentImage.submat(tmpl_rect);
+
         Graphics g = jPanelImage.getGraphics();
 
         g.drawImage(encodeImage(backgroundSubMat), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
-        
+
         Erkennung erkenner = new Erkennung();
-        
+
         System.out.println(erkenner.processFrame(backgroundSubMat));
     }//GEN-LAST:event_jButton2ActionPerformed
 
