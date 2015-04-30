@@ -111,3 +111,7 @@ sympy-plots-for-*.tex/
 # tepmporary editor files
 *.swp
 
+/sw/PREN2_Controller/build/
+/sw/PREN2_Controller/nbproject/private/
+/sw/OpenCV3.0/
+/sw/PREN2_Controller/dist/
