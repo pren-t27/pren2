@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="BluetoothCommandSender:jar2">
-    <output-path>$USER_HOME$/Dropbox/APPE GRUPPE/PREN-SW</output-path>
+    <output-path>$PROJECT_DIR$/../PREN2_Controller/lib</output-path>
     <root id="archive" name="BluetoothCommandSender.jar">
       <element id="module-output" name="BluetoothCommandSender" />
       <element id="extracted-dir" path="/Library/Java/Extensions/jssc-2.8.0.jar" path-in-jar="/" />
