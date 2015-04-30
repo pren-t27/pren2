@@ -1,8 +1,19 @@
 package GUI;
 
+import Calculation.Erkennung;
+import imagegetter.ImageHandler;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import javax.imageio.ImageIO;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfByte;
+import static org.opencv.imgcodecs.Imgcodecs.imencode;
 
 
 /*
@@ -16,6 +27,7 @@ import java.awt.event.MouseEvent;
  */
 public class ControllerGUI extends javax.swing.JFrame {
 
+    ImageHandler imgHandler = new ImageHandler();
     private final MouseAdapter mouseHandler;
     java.awt.Point click_point, release_point;
 
@@ -48,7 +60,7 @@ public class ControllerGUI extends javax.swing.JFrame {
         };
 
         initComponents();
-        
+
         jPanelImage.addMouseListener(mouseHandler);
 
     }
@@ -68,7 +80,8 @@ public class ControllerGUI extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
         jPanelImage = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButtonGetImage = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,7 +116,19 @@ public class ControllerGUI extends javax.swing.JFrame {
             .addGap(0, 480, Short.MAX_VALUE)
         );
 
-        jButton1.setText("jButton1");
+        jButtonGetImage.setText("jButton1");
+        jButtonGetImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGetImageActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton1");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,11 +139,13 @@ public class ControllerGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonGetImage, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
@@ -133,7 +160,9 @@ public class ControllerGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonGetImage)
+                            .addComponent(jButton2)))
                     .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,10 +172,40 @@ public class ControllerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonGetImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetImageActionPerformed
+
+        Mat blub = imgHandler.getImage();
+        Graphics g = jPanelImage.getGraphics();
+
+        g.drawImage(encodeImage(blub), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
+
+
+    }//GEN-LAST:event_jButtonGetImageActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Mat blub = imgHandler.getImage();
+        
+        Erkennung erkenner = new Erkennung();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public BufferedImage encodeImage(Mat pImage) {
+        MatOfByte mem = new MatOfByte();
+        try {
+            imencode(".bmp", pImage, mem);
+            Image im = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
+            return ((BufferedImage) im);
+        } catch (Exception ex) {
+            ex.getMessage();
+            return null;
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -179,7 +238,8 @@ public class ControllerGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonGetImage;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanelImage;
     private javax.swing.JScrollPane jScrollPane1;
