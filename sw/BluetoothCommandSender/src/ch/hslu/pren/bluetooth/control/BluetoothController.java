@@ -101,7 +101,7 @@ public class BluetoothController {
      * @throws SerialPortException
      */
     public void turnRight(int ticks) throws SerialPortException {
-        btSender.sendCommandToDevice("turnRight(" + ticks + ")");
+        btSender.sendCommandToDevice("l6480 move f " + ticks + "\n");
     }
 
     /**
@@ -110,7 +110,7 @@ public class BluetoothController {
      * @throws SerialPortException
      */
     public void turnLeft(int ticks) throws SerialPortException {
-        btSender.sendCommandToDevice("turnRight(-" + ticks + ")");
+        btSender.sendCommandToDevice("l6480 move r " + ticks + "\n");
     }
 
     /**
@@ -118,7 +118,7 @@ public class BluetoothController {
      * @throws SerialPortException
      */
     public void shoot() throws SerialPortException {
-        btSender.sendCommandToDevice("shoot()");
+        btSender.sendCommandToDevice("BLDC on");
     }
 
     /**
