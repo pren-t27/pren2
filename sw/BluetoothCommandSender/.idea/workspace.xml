@@ -8,7 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4360e16e-a410-49ad-9703-789094e06ec3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/BluetoothCommandSender_jar2.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/BluetoothCommandSender_jar2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ch/hslu/pren/bluetooth/control/BluetoothController.java" afterPath="$PROJECT_DIR$/src/ch/hslu/pren/bluetooth/control/BluetoothController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BluetoothCommandSender.iws" />
@@ -35,8 +35,8 @@
       <file leaf-file-name="BluetoothController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ch/hslu/pren/bluetooth/control/BluetoothController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18344827">
-              <caret line="107" column="57" selection-start-line="107" selection-start-column="57" selection-end-line="107" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.65931034">
+              <caret line="122" column="30" selection-start-line="122" selection-start-column="30" selection-end-line="122" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -945,12 +945,12 @@
       <workItem from="1429771244116" duration="674000" />
       <workItem from="1429862842485" duration="152000" />
       <workItem from="1430375978389" duration="1111000" />
-      <workItem from="1430380732254" duration="102000" />
+      <workItem from="1430380732254" duration="1311000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59418000" />
+    <option name="totallyTimeSpent" value="60627000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1466,8 +1466,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ch/hslu/pren/bluetooth/control/BluetoothController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18344827">
-          <caret line="107" column="57" selection-start-line="107" selection-start-column="57" selection-end-line="107" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.65931034">
+          <caret line="122" column="30" selection-start-line="122" selection-start-column="30" selection-end-line="122" selection-end-column="30" />
           <folding />
         </state>
       </provider>
