@@ -111,3 +111,6 @@ sympy-plots-for-*.tex/
 # tepmporary editor files
 *.swp
 
+*.jar
+!sw/PREN2_Controller/lib/*.jar
+!sw/PREN2_Controller/lib/*/*.jar
