@@ -96,6 +96,38 @@ public class BluetoothController {
     }
 
     /**
+     * command to prepare the hardware for moving and shooting operations
+     * @throws SerialPortException
+     */
+    public void startDevice() throws SerialPortException {
+        btSender.sendCommandToDevice("BLDC on\n");
+    }
+
+    /**
+     * command to stop the device in operation
+     * @throws SerialPortException
+     */
+    public void stopDevice() throws SerialPortException {
+        btSender.sendCommandToDevice("BLDC off\n");
+    }
+
+    /**
+     * command to prepare for a fill
+     * @throws SerialPortException
+     */
+    public void fill() throws SerialPortException {
+        btSender.sendCommandToDevice("fill\n");
+    }
+
+    /**
+     * command to stop filling
+     * @throws SerialPortException
+     */
+    public void fillStop() throws SerialPortException {
+        btSender.sendCommandToDevice("fill stop\n");
+    }
+
+    /**
      * Sends the turnRight command to the connected device
      * @param ticks the number of overgiven ticks
      * @throws SerialPortException
@@ -118,7 +150,7 @@ public class BluetoothController {
      * @throws SerialPortException
      */
     public void shoot() throws SerialPortException {
-        btSender.sendCommandToDevice("BLDC on");
+        btSender.sendCommandToDevice("shoot");
     }
 
     /**
@@ -126,7 +158,7 @@ public class BluetoothController {
      * @throws SerialPortException
      */
     public void resetTower() throws SerialPortException {
-        btSender.sendCommandToDevice("resetTower()");
+        btSender.sendCommandToDevice("resetTower");
     }
 
     public boolean getConnectionStatus() {
