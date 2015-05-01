@@ -4,7 +4,6 @@ import Calculation.Erkennung;
 import imagegetter.ImageHandler;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -13,7 +12,13 @@ import javax.imageio.ImageIO;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
 import static org.opencv.imgcodecs.Imgcodecs.imencode;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.core.Point;
+import static org.opencv.imgproc.Imgproc.getRotationMatrix2D;
+import static org.opencv.imgproc.Imgproc.warpAffine;
 
 
 /*
@@ -33,9 +38,21 @@ public class ControllerGUI extends javax.swing.JFrame {
 
     Point sub_topLeft, sub_bottomRight;
 
+    Mat imgFromCam;
+    Mat backgroundSubMat;
+
     private void translatePoints(java.awt.Point click, java.awt.Point release) {
         sub_topLeft = new Point(click.x * 2, click.y * 2);
         sub_bottomRight = new Point(release.x * 2, release.y * 2);
+    }
+
+    private Mat turnMat(Mat inputMat) {
+        Point src_center = new Point(inputMat.cols() / 2, inputMat.rows() / 2);
+        Mat rot_mat = getRotationMatrix2D(src_center, 180, 1.0);
+        Mat dst = new Mat();
+        warpAffine(inputMat, dst, rot_mat, inputMat.size());
+
+        return dst;
     }
 
     /**
@@ -174,19 +191,30 @@ public class ControllerGUI extends javax.swing.JFrame {
 
     private void jButtonGetImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetImageActionPerformed
 
-        Mat blub = imgHandler.getImage();
+        imgFromCam = imgHandler.getImage();
+
+        imgFromCam = turnMat(imgFromCam);
+
         Graphics g = jPanelImage.getGraphics();
 
-        g.drawImage(encodeImage(blub), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
-
-
+        g.drawImage(encodeImage(imgFromCam), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
     }//GEN-LAST:event_jButtonGetImageActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Mat blub = imgHandler.getImage();
-        
+        Mat currentImage = imgHandler.getImage();
+
+        currentImage = turnMat(currentImage);
+
+        Rect tmpl_rect = new Rect(sub_topLeft, sub_bottomRight);
+        backgroundSubMat = currentImage.submat(tmpl_rect);
+
+        Graphics g = jPanelImage.getGraphics();
+
+        g.drawImage(encodeImage(backgroundSubMat), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
+
         Erkennung erkenner = new Erkennung();
-        
+
+        System.out.println(erkenner.processFrame(backgroundSubMat));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public BufferedImage encodeImage(Mat pImage) {

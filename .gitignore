@@ -111,6 +111,12 @@ sympy-plots-for-*.tex/
 # tepmporary editor files
 *.swp
 
+/sw/PREN2_Controller/build/
+/sw/PREN2_Controller/nbproject/private/
+/sw/OpenCV3.0/
+/sw/PREN2_Controller/dist/
 *.jar
 !sw/PREN2_Controller/lib/*.jar
 !sw/PREN2_Controller/lib/*/*.jar
+sw/BluetoothCommandSender/out/*
+sw/BluetoothCommandSenderTester/out/*
