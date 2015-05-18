@@ -2,12 +2,12 @@
 \tikzstyle{block} = [ rectangle, rounded corners, minimum width=1.5cm, minimum height=1cm, draw=black ]
 \begin{figure}[h!]
     \centering
-    \begin{tikzpicture}[node distance=3.7cm]
+    \begin{tikzpicture}[node distance=4.7cm]
         \node (frdm)        [block]                     {FRDM-KL25Z};
         \node (bt)          [block, left  of=frdm]      {HC-06};
-        \node (camera)      [block, below of=bt]        {Kamera};
-        \node (computer)    [block, left  of=camera]    {Laptop};
-        \node (supply)      [block, below of=computer]  {Netzteil};
+        \node (computer)    [block, above of=bt]        {Laptop};
+        \node (camera)      [block, right of=computer]  {Kamera};
+        \node (supply)      [block, below of=frdm]      {Netzteil};
         \node (bldc-drv)    [block, right of=frdm]      {BLDC Treiber};
         \node (bldc)        [block, right of=bldc-drv]  {BLDC Motor};
         \node (step-drv)    [block, below of=bldc-drv]  {Stepper Treiber};
@@ -15,24 +15,23 @@
         \node (dc-drv)      [block, above of=bldc-drv]  {DC Treiber};
         \node (dc)          [block, right of=dc-drv]    {DC Motor};
         % Data connections
-        \draw[very thick, ->, green]    (frdm.south east)   -| ++(0.5cm, 0)     |- (step-drv.west);
-        \draw[very thick, ->, green]    (frdm.east)         -| ++(0.5cm, 0)     |- (bldc-drv.west);
-        \draw[very thick, ->, green]    (frdm.north east)   -| ++(0.5cm, 0)     |- (dc-drv.west);
+        \draw[very thick, ->, green]    (frdm.south east)   -| ++(0.2cm, 0)     |- (step-drv.west);
+        \draw[very thick, ->, green]    (frdm.east)         -| ++(0.2cm, 0)     |- (bldc-drv.west);
+        \draw[very thick, ->, green]    (frdm.north east)   -| ++(0.2cm, 0)     |- (dc-drv.west);
         \draw[very thick, <->, green]   (frdm.base west)    -- node[below] {UART} (bt.base east);
         % Wireless data connection
-        \draw[very thick, <->, green, dashed]   (bt)        -| node[above] {Bluetooth} (computer);
-        \draw[very thick, <->, green, dashed]   (camera)    -- node[above] {WLAN} (computer);
+        \draw[very thick, <->, green, dashed]   (bt)        -- node[right] {Bluetooth} (computer);
+        \draw[very thick, <->, green]           (camera)    -- node[above] {USB} (computer);
         % Motor Power connections
         \draw[very thick, ->, blue]     (step-drv)  -- (step);
         \draw[very thick, <->, blue]    (bldc-drv)  -- (bldc);
         \draw[very thick, ->, blue]     (dc-drv)    -- (dc);
         % Power connections
         \draw[very thick, ->, red]  (frdm.west)         -- node[above] {5\si{\volt}}    (bt.east);
-        \draw[very thick, ->, red]  (supply.north east) -| node[right] {5\si{\volt}?}   (camera);
-        \draw[very thick, ->, red]  (supply)            -| node[right] {5\si{\volt}}    (frdm);
-        \draw[very thick, ->, red]  (supply.south east) -| ++(8.6cm, 0) node[right] {48\si{\volt}}  |- (step-drv.base west);
-        \draw[very thick, ->, red]  (supply.south east) -| ++(8.6cm, 0)     |- (bldc-drv.base west);
-        \draw[very thick, ->, red]  (supply.south east) -| ++(8.6cm, 0)     |- (dc-drv.base west);
+        \draw[very thick, ->, red]  (supply.north)      -- node[right] {5\si{\volt}}    (frdm);
+        \draw[very thick, ->, red]  (supply.base east) -| ++(1.7cm, 0)     |- node[below right] {48\si{\volt}} (step-drv.base west);
+        \draw[very thick, ->, red]  (supply.base east) -| ++(1.7cm, 0)     |- node[below right] {48\si{\volt}} (bldc-drv.base west);
+        \draw[very thick, ->, red]  (supply.east) -| ++(1.2cm, 0)     |- node[below right] {24\si{\volt}} (dc-drv.base west);
     \end{tikzpicture}
     \caption{Übersicht Elektrotechnik}
 \end{figure}
