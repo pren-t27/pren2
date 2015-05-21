@@ -85,3 +85,49 @@ Die Fehlerbehandlung wird über unchecked Exceptions realisiert. Details siehe J
 \paragraph{Beispielverwendung}
 Der folgende Codeausschnitt zeigt die Verwendung der Schnittstelle anhand einer beispielhaften Implementation BluetoothController: \\
 \lstinputlisting{../../sw/PrenManager/src/TestGUI/Erkennung-Example.java}
+
+\subsubsection{Spezifikation ImageGetter}
+
+\lstsettingjava
+
+\begin{table}[h!]
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline 
+		Version & Datum & Autor & Bemerkung & Status \\ 
+		\hline 
+		1.0.0 & 30.03.2015 & KW & Initiale Fassung & freigegeben \\ 
+		\hline 
+		1.0.1 & 16.04.2015 & KW & Initiale Fassung & freigegeben \\ 
+		\hline 
+		2.0.1 & 14.05.2015 & KW & Anpassung Bilderkennung & freigegeben \\ 
+		\hline 
+	\end{tabular} 
+	\caption{Steckbrief der Klasse ImageGetter}
+\end{table}
+
+\paragraph{Operationen und Datenstukturen}
+
+Die Schnittstelle stellt folgende Methoden und Datentypen zur Verfügung:  \\
+\begin{figure}[h!]          
+	\centering             
+	\includegraphics[width=0.5\textwidth]{../fig/Klassendiagramm_ImageGetter.png}
+	\caption{Klassendiagramm ImageGetter}
+	\label{fig:Klassendiagramm ImageGetter}        
+\end{figure} \\
+Details zu den Methoden und den verwendeten Datentypen sind in der JavaDoc festgehalten. \\
+
+\paragraph{Einsatz, Abläufe, Voraussetzungen und Zusicherungen}
+\begin{itemize}
+	\item{Die ImageGetter-Klasse wird wie folgt initialisiert: ImageHandler imgHandler = new ImageHandler(); }
+	\item{Mittels startReceiving() der StreamGetter-Thread gestartet werden. Der StreamGetter steuert die Kamera an und speichert immer das aktuellste Bild. Dieses kann vom ImageHandler mittels getImage() geholt werden. Der ImageHandler stellt dieses Bild dann mit der eigenen getImage()-Funktion als Mat-Objekt zu Verfügung. Der Thread kann mittels terminateImages() beendet werden.}
+\end{itemize}
+
+\paragraph{Aufbau und Konfiguration} 
+Keine zusätzlichen Informationen. \\
+
+\paragraph{Fehlerbehandlung}
+Die Fehlerbehandlung wird über unchecked Exceptions realisiert. Details siehe JavaDoc. \\
+
+\paragraph{Beispielverwendung}
+Der folgende Codeausschnitt zeigt die Verwendung der Schnittstelle anhand einer beispielhaften Implementation ImageGetter: \\
+\lstinputlisting{../../sw/PrenManager/src/TestGUI/TestImageGetter.java}
