@@ -1,6 +1,10 @@
 package GUI;
 
+import Calculation.Berechnung;
 import Calculation.Erkennung;
+import Calculation.ImgColorChanger;
+import Calculation.ImgMidGetter;
+import ch.hslu.pren.bluetooth.control.BluetoothController;
 import imagegetter.ImageHandler;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -8,7 +12,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import jssc.SerialPort;
+import jssc.SerialPortException;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
@@ -41,6 +50,10 @@ public class ControllerGUI extends javax.swing.JFrame {
     Mat imgFromCam;
     Mat backgroundSubMat;
 
+    private SerialPort serialPort;
+    BluetoothController btController;
+    Thread receiverThread;
+
     private void translatePoints(java.awt.Point click, java.awt.Point release) {
         sub_topLeft = new Point(click.x * 2, click.y * 2);
         sub_bottomRight = new Point(release.x * 2, release.y * 2);
@@ -59,6 +72,7 @@ public class ControllerGUI extends javax.swing.JFrame {
      * Creates new form ControllerGUI
      */
     public ControllerGUI() {
+
         this.mouseHandler = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -77,9 +91,23 @@ public class ControllerGUI extends javax.swing.JFrame {
         };
 
         initComponents();
+        String os = "os.name";
+
+        Properties prop = System.getProperties();
+        String actualOS = prop.getProperty(os);
+        System.out.println(actualOS);
+
+        if (actualOS.contains("Windows")) {
+            portList.setListData(BluetoothController.getWindowsPortNames());
+        } else {
+            portList.setListData(BluetoothController.getMacOSXPortNames());
+        }
+
+        btController = new BluetoothController();
 
         jPanelImage.addMouseListener(mouseHandler);
 
+        this.pack();
     }
 
     /**
@@ -92,30 +120,33 @@ public class ControllerGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        portList = new javax.swing.JList();
+        txtFldCommand = new javax.swing.JTextField();
         jPanelImage = new javax.swing.JPanel();
         jButtonGetImage = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtAreaReceived = new ch.hslu.pren.bluetooth.view.JReceiverTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        portList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        portList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                portListKeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(portList);
 
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        jTextField1.setText("jTextField1");
+        txtFldCommand.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFldCommandKeyPressed(evt);
+            }
+        });
 
         jPanelImage.setBackground(new java.awt.Color(255, 102, 51));
         jPanelImage.setMaximumSize(new java.awt.Dimension(640, 480));
@@ -147,6 +178,10 @@ public class ControllerGUI extends javax.swing.JFrame {
             }
         });
 
+        txtAreaReceived.setColumns(20);
+        txtAreaReceived.setRows(5);
+        jScrollPane3.setViewportView(txtAreaReceived);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,17 +189,17 @@ public class ControllerGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1)
+                    .addComponent(txtFldCommand)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonGetImage, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanelImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -175,14 +210,14 @@ public class ControllerGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonGetImage)
                             .addComponent(jButton2)))
                     .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(txtFldCommand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -204,18 +239,61 @@ public class ControllerGUI extends javax.swing.JFrame {
         Mat currentImage = imgHandler.getImage();
 
         currentImage = turnMat(currentImage);
+        //Benötigt um den Schwarzen Rand um das Submat zu zeichnen. Anosonsten wird das "lastX" nicht gefunden im ImgMidGetter...
+        Imgproc.rectangle(currentImage, sub_topLeft, sub_bottomRight, new Scalar(30, 30, 30), 3);
+
+        Graphics g = jPanelImage.getGraphics();
+        g.drawImage(encodeImage(currentImage), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
 
         Rect tmpl_rect = new Rect(sub_topLeft, sub_bottomRight);
         backgroundSubMat = currentImage.submat(tmpl_rect);
 
-        Graphics g = jPanelImage.getGraphics();
-
-        g.drawImage(encodeImage(backgroundSubMat), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
-
         Erkennung erkenner = new Erkennung();
+        erkenner.processFrame(backgroundSubMat);
 
-        System.out.println(erkenner.processFrame(backgroundSubMat));
+        double winkel = erkenner.processFrame(backgroundSubMat);
+        double ticks = 341.111 * winkel;
+        try {
+            if (winkel > 0) {
+                btController.turnLeft((int) ticks);
+            } else {
+                ticks = ticks * -1;
+                btController.turnRight((int) ticks);
+            }
+        } catch (SerialPortException ex) {
+            ex.printStackTrace();
+            System.out.println("Y U NO WORK TICKS??");
+        }
+        System.out.println(ticks);
+        System.out.println();
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void portListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_portListKeyPressed
+        if (evt.getKeyCode() == 10) {
+            System.out.println("Connecting to " + portList.getSelectedValue().toString());
+            try {
+                btController.initConnections(portList.getSelectedValue().toString());
+                System.out.println(txtAreaReceived.getText());
+                btController.addBluetoothReceiverListener(txtAreaReceived);
+            } catch (SerialPortException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_portListKeyPressed
+
+    private void txtFldCommandKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFldCommandKeyPressed
+        if (evt.getKeyCode() == 10 && btController.getConnectionStatus()) {
+            try {
+                btController.sendCommandToDevice(txtFldCommand.getText());
+                txtFldCommand.setText("");
+            } catch (SerialPortException e1) {
+                e1.printStackTrace();
+            }
+            System.out.println();
+        }
+    }//GEN-LAST:event_txtFldCommandKeyPressed
 
     public BufferedImage encodeImage(Mat pImage) {
         MatOfByte mem = new MatOfByte();
@@ -260,6 +338,7 @@ public class ControllerGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new ControllerGUI().setVisible(true);
             }
         });
@@ -268,11 +347,11 @@ public class ControllerGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonGetImage;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanelImage;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList portList;
+    private ch.hslu.pren.bluetooth.view.JReceiverTextArea txtAreaReceived;
+    private javax.swing.JTextField txtFldCommand;
     // End of variables declaration//GEN-END:variables
 }
