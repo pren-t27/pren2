@@ -2,8 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group name="Semseter3_Logger"/>
+=======
         <group name="Semseter3_Logger">
             <file>file:/E:/Schule/Semester4/PREN2/workplaceNetbeans/GitPren/pren2/sw/PREN2_Controller/src/GUI/ControllerGUI.java</file>
         </group>
+        <group/>
+>>>>>>> 18a699fbe4b6722b02c1b99ca7cb953d8b5c753a
     </open-files>
 </project-private>
