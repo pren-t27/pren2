@@ -16,7 +16,7 @@ Version & Datum & Autor & Bemerkung & Status \\
 \caption{Steckbrief der Klasse BluetoothController}
 \end{table}
 
-\textbf{Operationen und Datenstukturen}
+\paragraph{Operationen und Datenstukturen}
  
 Die Schnittstelle stellt folgende Methoden und Datentypen zur Verfügung:  \\
 \begin{figure}[h!]          
@@ -26,17 +26,17 @@ Die Schnittstelle stellt folgende Methoden und Datentypen zur Verfügung:  \\
 	\label{fig:Klassendiagramm Bluetoothmodul}        
 \end{figure} \\
 Details zu den Methoden und den verwendeten Datentypen sind in der JavaDoc festgehalten. \\
-\textbf{Einsatz, Abläufe, Voraussetzungen und Zusicherungen}\\
+\paragraph{Einsatz, Abläufe, Voraussetzungen und Zusicherungen}
 \begin{itemize}
 	\item{Bevor Daten über die Schnittstelle ausgetauscht werden können, muss mittels initConnections(String serialPortName) ein gültiger serieller Port definiert werden. Der konfigurierte Port gilt für alle darauf folgenden command-Aufrufe. }
 	\item{Ein Wechsel des seriellen Ports, d.h. Umkonfigurierung mit initConnections(String serialPortName), ist nun jederzeit möglich.}
 	\item{Eine Klasse, die das Interface BluetoothReceiverListener implementiert, kann als Observer für empfangene Nachrichten des BluetoothReceivers fungieren.}
 \end{itemize}
-\textbf{Aufbau und Konfiguration} \\
+\paragraph{Aufbau und Konfiguration} 
 Keine zusätzlichen Informationen. \\
-\textbf{Fehlerbehandlung}\\
+\paragraph{Fehlerbehandlung}
 Die Fehlerbehandlung wird über unchecked Exceptions realisiert. Details siehe JavaDoc. \\
-\textbf{Beispielverwendung}\\
+\paragraph{Beispielverwendung}
 Der folgende Codeausschnitt zeigt die Verwendung der Schnittstelle anhand einer beispielhaften Implementation BluetoothController: \\
 \lstinputlisting{../../sw/PrenManager/src/TestGUI/newClass.java}
 
