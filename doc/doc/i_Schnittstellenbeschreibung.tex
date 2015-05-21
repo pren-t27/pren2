@@ -40,3 +40,48 @@ Die Fehlerbehandlung wird über unchecked Exceptions realisiert. Details siehe J
 Der folgende Codeausschnitt zeigt die Verwendung der Schnittstelle anhand einer beispielhaften Implementation BluetoothController: \\
 \lstinputlisting{../../sw/PrenManager/src/TestGUI/newClass.java}
 
+\subsubsection{Spezifikation BluetoothController-Klasse}
+
+\lstsettingjava
+
+\begin{table}[h!]
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline 
+		Version & Datum & Autor & Bemerkung & Status \\ 
+		\hline 
+		1.0.0 & 26.03.2015 & SN & Initiale Fassung & freigegeben \\ 
+		\hline 
+		1.0.1 & 15.04.2015 & SN & Initiale Fassung & freigegeben \\ 
+		\hline 
+		2.0.1 & 07.05.2015 & PK & Anpassung für Erkennung-Klasse & freigegeben \\ 
+		\hline 
+	\end{tabular} 
+	\caption{Steckbrief der Klasse Erkennung}
+\end{table}
+
+\paragraph{Operationen und Datenstukturen}
+
+Die Schnittstelle stellt folgende Methoden und Datentypen zur Verfügung:  \\
+\begin{figure}[h!]          
+	\centering             
+	\includegraphics[width=0.5\textwidth]{fig/Klassendiagramm_Erkennung.png}
+	\caption{Klassendiagramm Bilderkennung}
+	\label{fig:Klassendiagramm Bilderkennung}        
+\end{figure} \\
+Details zu den Methoden und den verwendeten Datentypen sind in der JavaDoc festgehalten. \\
+
+\paragraph{Einsatz, Abläufe, Voraussetzungen und Zusicherungen}
+\begin{itemize}
+	\item{Die Erkennung Klasse wird wie folgt initialisiert: Erkennung erkenner = new Erkennung(); }
+	\item{Es gibt die FUnktion processFrame(Mat frame) mit welchem ein Bild abgearbeitet wird und den Winkel als double zurückliefert.}
+\end{itemize}
+
+\paragraph{Aufbau und Konfiguration} 
+Keine zusätzlichen Informationen. \\
+
+\paragraph{Fehlerbehandlung}
+Die Fehlerbehandlung wird über unchecked Exceptions realisiert. Details siehe JavaDoc. \\
+
+\paragraph{Beispielverwendung}
+Der folgende Codeausschnitt zeigt die Verwendung der Schnittstelle anhand einer beispielhaften Implementation BluetoothController: \\
+\lstinputlisting{../../sw/PrenManager/src/TestGUI/Erkennung-Example.java}
