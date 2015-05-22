@@ -1,8 +1,9 @@
 \subsection{Softwaresubsysteme}
-Die im Kapitel Schnittstellenbeschreibung beschriebenen Komponenten arbeiten folgendermassen zusammen:
-\begin{figure}[h!]          
-	\centering             
-	\includegraphics[width=0.5\textwidth]{../fig/Sequenzdiagramm Info.png}
-	\caption{Sequenzdiagramm}
-	\label{fig:Sequenzdiagramm}        
-\end{figure}
+Nachfolgend sind die einzelnen Softwaresubsysteme und ihre Komponenten und Funktionalitäten beschrieben.
+\subsubsection{Bluetoothmodul}
+Das Bluetoothmodul setzt sich im Wesentlichen aus drei Komponenten zusammen. Diese Komponenten sind:
+\begin{itemize}
+	\item{\textbf{BluetoothSender:} Diese Klasse übernimmt die Befehlsübermittlung an das Freedomboard.}
+	\item{\textbf{BluetoothReceiver:} Diese Klasse ist für das Empfangen der Statusnachrichten vom Freedomboard zuständig. Sie enthält eine Liste von BluetoothReceiverListener, deren Implementationen als Observer fungieren.}
+	\item{\textbf{BluetoothController:} Der BluetoothController übernimmt die Initialisierung und Steuerung der einzelnen Komponenten und regelt deren Zusammenspiel. Er dient ausserdem als "Durchlauferhitzer" für BluetoothReceiverListener-Implementationen, damit diese sich beim BluetoothReceiver als Observer anmelden können.}
+\end{itemize}
