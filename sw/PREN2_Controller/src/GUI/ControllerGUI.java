@@ -127,6 +127,7 @@ public class ControllerGUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAreaReceived = new ch.hslu.pren.bluetooth.view.JReceiverTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,6 +183,13 @@ public class ControllerGUI extends javax.swing.JFrame {
         txtAreaReceived.setRows(5);
         jScrollPane3.setViewportView(txtAreaReceived);
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,7 +202,9 @@ public class ControllerGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonGetImage, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -214,7 +224,8 @@ public class ControllerGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonGetImage)
-                            .addComponent(jButton2)))
+                            .addComponent(jButton2)
+                            .addComponent(jButton1)))
                     .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(txtFldCommand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,6 +306,46 @@ public class ControllerGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtFldCommandKeyPressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Mat currentImage = imgHandler.getImage();
+
+        currentImage = turnMat(currentImage);
+        //Benötigt um den Schwarzen Rand um das Submat zu zeichnen. Anosonsten wird das "lastX" nicht gefunden im ImgMidGetter...
+        Imgproc.rectangle(currentImage, sub_topLeft, sub_bottomRight, new Scalar(30, 30, 30), 3);
+
+        Graphics g = jPanelImage.getGraphics();
+        g.drawImage(encodeImage(currentImage), 0, 0, jPanelImage.getWidth(), jPanelImage.getHeight(), this);
+
+        Rect tmpl_rect = new Rect(sub_topLeft, sub_bottomRight);
+        backgroundSubMat = currentImage.submat(tmpl_rect);
+
+        Erkennung erkenner = new Erkennung();
+        erkenner.processFrame(backgroundSubMat);
+
+        double winkel = erkenner.processFrame(backgroundSubMat);
+        double ticks = 341.111 * winkel;
+        try {
+            if (winkel > 0) {
+                btController.turnLeft((int) ticks);
+            } else {
+                ticks = ticks * -1;
+                btController.turnRight((int) ticks);
+            }
+        } catch (SerialPortException ex) {
+            ex.printStackTrace();
+            System.out.println("Y U NO WORK TICKS??");
+        }
+        System.out.println(ticks);
+        System.out.println();
+
+        try {
+            btController.shoot();
+        } catch (SerialPortException ex) {
+            ex.printStackTrace();
+            System.out.println("Shoot is häääänging");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public BufferedImage encodeImage(Mat pImage) {
         MatOfByte mem = new MatOfByte();
         try {
@@ -345,6 +396,7 @@ public class ControllerGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonGetImage;
     private javax.swing.JPanel jPanelImage;
