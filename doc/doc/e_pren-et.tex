@@ -1,6 +1,5 @@
 \subsection{Fachgruppe Elektrotechnik}
-\label{sec:pren-et}
-Elektrotechnik-Studierende aus mehreren Gruppen haben sich
+Elektrotechnik-Studierenden aus mehreren Gruppen haben sich
 zusammengeschlossen um gemeinsame Probleme anzugehen. Dabei handelt es sich
 um die benötigte Hard- und Software, um Motoren anzusteuern
 und gegebenenfalls zu regeln. In diesem Zusammenschluss werden drei Gruppen
@@ -10,16 +9,40 @@ möglich denselben Lösungsansatz verfolgt, sondern die Ressourcen kombiniert,
 Synergien nutzt, um eine bessere Lösung zu erarbeiten. Auf diese Weise kann
 das teamübergreifende Arbeiten im Rahmen des PREN erlernt und
 geübt werden. Somit wird Idee der Interdisziplinarität im erweiterten Sinn
-Rechnung getragen. Die Gruppen und deren Mitglieder sind in Tabelle 
-\ref{tab:pren-et-overview} aufgeführt.
+Rechnung getragen. Die Gruppen und deren Mitglieder sind in 
+\autoref{tab:pren-et-members} aufgeführt.
 \begin{table}[h!]
-	\centering
-	\begin{zebratabular}{l l}
-		\rowcolor{gray} Projekt		& Team \\
-		DC Motoren   & 33, 39 \\
-		Schrittmotor & 27, 33, 38 \\
-		BLDC Motor   & 27, 32 \\
-	\end{zebratabular}
-	\caption{Übersicht der PREN-ET Projektgruppen}
-	\label{tab:pren-et-overview}
+    \centering
+    \begin{zebratabular}{lllccc}
+        \rowcolor{gray} 
+        Team & Mitglied         & Github    & DC          & BLDC        & Stepper     \\
+        27   & Daniel Winz      & daniw     &             & \textbullet & \textbullet \\
+        32   & Yves Studer      & ystuder   &             & \textbullet &             \\
+        33   & Flavio Kreiliger & Flavinsky & \textbullet &             & \textbullet \\
+        38   & Bettina Wyss     & BettyET   &             &             & \textbullet \\
+        39   & Ervin Mazlagi\'c & ninux     & \textbullet &             &             \\
+    \end{zebratabular}
+    \caption{Übersicht der PREN-ET Projektgruppen}
+    \label{tab:pren-et-members}
+\end{table}
+Für den Austausch und die Ablage von Daten und Unterlagen wird die Plattform 
+Github ausgewählt, da damit via Git\footnote{Verteiltes 
+Versionskontrollsystem} versioniert werden kann. Dazu wird auf Github die 
+Organisation PREN-ET gegründet. Diese ist unter 
+\url{https://github.com/PREN-ET} einsehbar. für die einzelnen Projekte werden 
+Repositories angelegt. Diese sind in \autoref{tab:pren-et-repos} aufgeführt. 
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{p{0.09\textwidth}p{0.37\textwidth}p{0.4\textwidth}}
+        \rowcolor{gray} 
+        Repository  & Link         & Beschreibung \\
+        info        & \url{https://github.com/PREN-ET/info}    & Allgemeine Informationen zur Organisation von PREN-ET \\
+        doc         & \url{https://github.com/PREN-ET/doc}     & Dokumentation \\
+        dc          & \url{https://github.com/PREN-ET/dc}      & Treiber für Gleichstrommotoren \\
+        bldc        & \url{https://github.com/PREN-ET/bldc}    & Treiber für Brushless Motoren \\
+        stepper     & \url{https://github.com/PREN-ET/stepper} & Treiber für Schrittmotoren \\
+        frdm        & \url{https://github.com/PREN-ET/frdm}    & Beispiele zur Ansteuerung mittels FRDM-KL25Z \\
+    \end{zebratabular}
+    \caption{Übersicht der PREN-ET Repositories}
+    \label{tab:pren-et-repos}
 \end{table}

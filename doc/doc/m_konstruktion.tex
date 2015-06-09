@@ -6,14 +6,14 @@ Die Konstruktion besteht hauptsächlich aus Aluminium-Blechteilen. Einige
 Komponenten müssen aus konstruktiven Gründen als Frästeile ausgeführt werden. 
 Um ein geringeres Gewicht zu erreichen, werden die Blechteile mit Aussparungen 
 an nicht erforderlichen Flächen versehen. Da dies eine Schwächung der 
-Stabilität mit sich bringt werden die Aussparungen, wie im Flugzeugbau üblich, 
-mit gebogenen Innenkanten ausgeführt.
+Stabilität mit sich bringt, werden die Aussparungen, wie im Flugzeugbau 
+üblich, mit gebogenen Innenkanten ausgeführt.
 
 \begin{figure}[h!]          
-	\centering             
-	\includegraphics[width=0.5\textwidth]{fig/IMAG0364.jpg}
-	\caption{Seitenteil Balllager}
-	\label{fig:Seitenteil Balllager}        
+    \centering             
+    \includegraphics[width=0.5\textwidth]{fig/IMAG0364.jpg}
+    \caption{Seitenteil Balllager}
+    \label{fig:Seitenteil Balllager}        
 \end{figure}
 
 \subsubsection{Ballager}
@@ -22,13 +22,14 @@ Motor befestigt sind. Gelagert werden die Bälle im Inneren des quadratischen
 Querschnittes. Die Halterungen des Motors werden jeweils auf beiden 
 Aussenseiten des vorderen Endes befestigt. Damit das Stahlband des 
 Ballnachschubs optimal aufgewickelt werden kann, werden die herausstehenden 
-Enden der Nieten mit Aluminiumleisten abgedeckt.
+Enden der Nieten mit Aluminiumleisten abgedeckt. Diese können gleichzeitig als 
+Kabelkanal verwendet werden. 
 
 \begin{figure}[h!]          
-	\centering             
-	%\includegraphics[width=0.5\textwidth]{fig/balllager.jpg}
-	\caption{jfdslj}
-	\label{fig:hhjfdhfd}        
+    \centering             
+    %\includegraphics[width=0.5\textwidth]{fig/balllager.jpg}
+    \caption{jfdslj}
+    \label{fig:hhjfdhfd}        
 \end{figure}
 
 \subsubsection{Ballnachschub}
@@ -40,47 +41,52 @@ umgebauten Servomotor, welcher mittels Zahnriemen mit der Welle der Trommel
 verbunden ist.
 
 \begin{figure}[h!]          
-	\centering             
-	%\includegraphics[width=0.5\textwidth]{fig/ballnachschub.jpg}
-	\caption{jfdslj}
-	\label{fig:hhjfdhfd}        
+    \centering             
+    %\includegraphics[width=0.5\textwidth]{fig/ballnachschub.jpg}
+    \caption{jfdslj}
+    \label{fig:hhjfdhfd}        
 \end{figure}
 
 \paragraph{Auslegung}
 Als Servo dient ein HS85MG der Firma Hitec. Dieses ist wie folgt spezifiziert: 
 \begin{table}[h!]
-	\centering
-	\begin{zebratabular}{lll}
-		\rowcolor{gray}
-		Parameter &
-		Wert bei 4.8\si{\volt} &
-		Wert bei 6.0\si{\volt} \\
-		Stellgeschwindigkeit (60\si{\degree}) &
-		0.16\si{\second} &
-		0.14\si{\second} \\
-		Drehmoment &
-		3.0\si{\kilogram\per\centi\metre} &
-		3.5\si{\kilogram\per\centi\metre} \\
-	\end{zebratabular}
-	\caption{Spezifikation Servomotor}
+    \centering
+    \begin{zebratabular}{lll}
+        \rowcolor{gray}
+        Parameter &
+        Wert bei 4.8\si{\volt} &
+        Wert bei 6.0\si{\volt} \\
+        Stellgeschwindigkeit (60\si{\degree}) &
+        0.16\si{\second} &
+        0.14\si{\second} \\
+        Drehmoment &
+        3.0\si{\kilogram\per\centi\metre} &
+        3.5\si{\kilogram\per\centi\metre} \\
+    \end{zebratabular}
+    \caption{Spezifikation Servomotor}
 \end{table}
 Dies ergibt folgende Spezifikationen für den sich daraus ergebenden DC Motor: 
 \begin{table}[h!]
-	\centering
-	\begin{zebratabular}{lll}
-		\rowcolor{gray}
-		Parameter &
-		Wert bei 4.8\si{\volt} &
-		Wert bei 6.0\si{\volt} \\
-		Stellgeschwindigkeit (60\si{\degree}) &
-		62.5\si{\per\minute} &
-		71.4\si{\per\minute} \\
-		Drehmoment &
-		0.3\si{\newton\metre} &
-		0.35\si{\newton\metre} \\
-	\end{zebratabular}
-	\caption{Spezifikation DC Motor}
+    \centering
+    \begin{zebratabular}{lll}
+        \rowcolor{gray}
+        Parameter &
+        Wert bei 4.8\si{\volt} &
+        Wert bei 6.0\si{\volt} \\
+        Stellgeschwindigkeit (60\si{\degree}) &
+        62.5\si{\per\minute} &
+        71.4\si{\per\minute} \\
+        Drehmoment &
+        0.3\si{\newton\metre} &
+        0.35\si{\newton\metre} \\
+    \end{zebratabular}
+    \caption{Spezifikation DC Motor}
 \end{table}
+Beim Dauerbetrieb zeigt sich dieser Motor als zu schwach. Um eine akzeptable 
+Abschusskadenz zu erreichen muss er mit einer Spannung von 16\si{\volt} 
+betrieben werden. Dieser Belastung ist der Motor nicht gewachsen. Nach einigen 
+Versuchen weist er einen Kurzschluss auf und muss ersetzt werden. Als Ersatz 
+kommt ein Servo vom Typ ??? von Conrad zum Einsatz. 
 
 \subsubsection{Drehvorrichtung}
 Die Drehvorrichtung dient zur horizontalen Ausrichtung der 
@@ -91,10 +97,10 @@ direkt verbundenen, kleineren Zahnrad eingestellt. Einen guten Bodenkontakt
 garantieren an der Unterseite der Füsse angeklebte Gummimatten.
 
 \begin{figure}[h!]          
-	\centering             
-	%\includegraphics[width=0.5\textwidth]{fig/drehvorrichtung.jpg}
-	\caption{jfdslj}
-	\label{fig:hhjfdhfd}        
+    \centering             
+    %\includegraphics[width=0.5\textwidth]{fig/drehvorrichtung.jpg}
+    \caption{jfdslj}
+    \label{fig:hhjfdhfd}        
 \end{figure}
 
 \paragraph{Auflösung}
@@ -131,10 +137,10 @@ eingepresst wird. Dieser dient dazu, die Magnetfeldlinien hinter den
 Dauermagneten zu bündeln und so den magnetischen Kreis zu schliessen. 
 
 \begin{figure}[h!]          
-	\centering             
-	%\includegraphics[width=0.5\textwidth]{fig/motor.jpg}
-	\caption{jfdslj}
-	\label{fig:hhjfdhfd}        
+    \centering             
+    %\includegraphics[width=0.5\textwidth]{fig/motor.jpg}
+    \caption{jfdslj}
+    \label{fig:hhjfdhfd}        
 \end{figure}
 
 \subsubsection{Turm}
@@ -146,10 +152,10 @@ Wartungsklappe ausgeführt. Die Abdeckplatte wird mit Schrauben anstatt mit
 Nieten befestigt.
 
 \begin{figure}[h!]          
-	\centering             
-	%\includegraphics[width=0.5\textwidth]{fig/turm.jpg}
-	\caption{jfdslj}
-	\label{fig:hhjfdhfd}        
+    \centering             
+    %\includegraphics[width=0.5\textwidth]{fig/turm.jpg}
+    \caption{jfdslj}
+    \label{fig:hhjfdhfd}        
 \end{figure}
 
 \clearpage
