@@ -14,6 +14,7 @@ fi
 echo initialize device ...
 echo "l6480 goto 0" > $dev
 echo "BLDC on" > $dev
+echo "BLDC setrpm 1400" > $dev
 sleep 15
 echo ready
 sleep 1
@@ -26,6 +27,7 @@ sleep 0.3
 #shooting
 echo shooting ...
 echo "shoot" > $dev
+echo "BLDC setrpm 1372" > $dev
 sleep 2.5
 
 #prepare for reload and next round
