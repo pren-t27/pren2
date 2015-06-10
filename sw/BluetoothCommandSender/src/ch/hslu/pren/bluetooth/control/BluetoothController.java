@@ -134,6 +134,13 @@ public class BluetoothController {
      */
     public void turnRight(int ticks) throws SerialPortException {
         btSender.sendCommandToDevice("l6480 goto " + ticks + "\n");
+        float t = ticks;
+        try {
+            Thread.sleep((long) (t/20));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        btSender.sendCommandToDevice("shoot");
     }
 
     /**
@@ -143,6 +150,13 @@ public class BluetoothController {
      */
     public void turnLeft(int ticks) throws SerialPortException {
         btSender.sendCommandToDevice("l6480 goto -" + ticks + "\n");
+        float t = ticks;
+        try {
+            Thread.sleep((long) (t/20));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        btSender.sendCommandToDevice("shoot");
     }
 
     /**
