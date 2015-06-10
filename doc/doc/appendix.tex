@@ -1,6 +1,77 @@
+\newcommand{\PRENETPATH}{cd}
+%\newcommand{\PRENETPATH}{../../../../sem5/pren-et/doc}
 \begin{appendix}
 \clearpage
 %\section{Sourcecode Steppertreiber L6480 von ST Microelectronics}
 %\lstinputlisting[caption={l6480.c}]{../../../../sem5/pren-et/stepper/driver/drv/l6480.c}
 %\lstinputlisting[caption={l6480.h}]{../../../../sem5/pren-et/stepper/driver/drv/l6480.h}
+\clearpage
+% BLDC
+\includepdf[
+    pages=1, 
+    offset=0cm -2.5cm, 
+    frame=false, 
+    pagecommand={
+        \textcolor{white}{\section{Anhang: Dokumentation BLDC Motor Treiber}}
+        \label{app:bldc}
+        \thispagestyle{empty}}
+    ]{\PRENETPATH/BLDC_StandaloneDoc.pdf}
+\includepdf[
+    pages=2-, 
+    offset=0cm -2.5cm, 
+    frame=false, 
+    pagecommand={
+        \thispagestyle{empty}}
+    ]{\PRENETPATH/BLDC_StandaloneDoc.pdf}
+% Stepper
+\includepdf[
+    pages=1, 
+    offset=0cm -2.5cm, 
+    frame=false, 
+    pagecommand={
+        \textcolor{white}{\section{Anhang: Dokumentation Schrittmotor Treiber}}
+        \label{app:stepper}
+        \thispagestyle{empty}}
+    ]{\PRENETPATH/Stepper_StandaloneDoc.pdf}
+\includepdf[
+    pages=2-, 
+    offset=0cm -2.5cm, 
+    frame=false, 
+    pagecommand={
+        \thispagestyle{empty}}
+    ]{\PRENETPATH/Stepper_StandaloneDoc.pdf}
+% DC
+\includepdf[
+    pages=1, 
+    offset=0cm -2.5cm, 
+    frame=false, 
+    pagecommand={
+        \textcolor{white}{\section{Anhang: Dokumentation DC Motor Treiber}}
+        \label{app:dc}
+        \thispagestyle{empty}}
+    ]{\PRENETPATH/DC_StandaloneDoc.pdf}
+\includepdf[
+    pages=2-, 
+    offset=0cm -2.5cm, 
+    frame=false, 
+    pagecommand={
+        \thispagestyle{empty}}
+    ]{\PRENETPATH/DC_StandaloneDoc.pdf}
+% Aufgabenstellung
+\includepdf[
+    pages=1, 
+    offset=0cm -2.5cm, 
+    frame=false, 
+    pagecommand={
+        \textcolor{white}{\section{Anhang: Aufgabenstellung}}
+        \label{app:aufgabe}
+        \thispagestyle{empty}}
+    ]{cd/Aufgabenstellung_PREN1_H14.pdf}
+\includepdf[
+    pages=2-, 
+    offset=0cm -2.5cm, 
+    frame=false, 
+    pagecommand={
+        \thispagestyle{empty}}
+    ]{cd/Aufgabenstellung_PREN1_H14.pdf}
 \end{appendix}
