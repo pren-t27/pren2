@@ -1,0 +1,32 @@
+\subsection{EMV-Konzept}
+\label{sec:e_emv}
+Damit bei der Inbetriebnahme keine Probleme aufgrund von elektromagnetischen 
+Einstrahlung oder Störungen wegen Übersprechen auftreten, muss ein EMV-Konzept 
+erarbeitet werden. Dieses wird in diesem Kapitel aufgezeigt. 
+
+\noindent Für die Verbindung zwischen den einzelnen Platinen werden möglichst 
+kurze Kabel verwendet. Es kommen ungeschirmte Flachbandkabel zum Einsatz. 
+(Siehe \ref{sec:e_emv_opt} \nameref{sec:e_emv_opt}) Auf den einzelnen Platinen 
+kommen Masseflächen zum Einsatz. Auf den Platinen für die Ansteuerung des 
+DC-Motors und des BLDC-Motors werden Filter auf den Datenleitungen eingesetzt 
+um hochfrequente Störungen zu dämpfen. Auf der BLDC-Platine besteht zudem die 
+Möglichkeit ein spezielles Filter vom Typ BNX024 von Murata zu bestücken. 
+Dieses beinhaltet einen Durchführungskondensator, eine Gleichtaktdrossel und 
+einen Filterkondensator. Mit diesem können hochfrequente Anteile in der 
+Speisung gefiltert werden. Weiter werden die Verbindungskabel zwischen 
+Speisung und Gerät jeweils paarweise verdrillt. 
+
+\subsubsection{Vorgehen beim Auftreten von Störungen}
+\label{sec:e_emv_opt}
+Treten während der Inbetriebnahme Störungen auf, muss das Gerät weiter 
+entstört werden. Dazu können in einem ersten Schritt die Verbindungskabel in 
+den vergesehenen Kabelkanälen verlegt werden. Aufgrund der 
+Aluminiumkonstruktion kann so eine gewisse Schirmwirkung erzielt werden. 
+Weiter können anstelle der ungeschirmten Flachbandkabel geschirmte Kabel 
+verwendet werden.  Ausserdem können in den Versorgungsleitungen 
+Gleichtaktdrosseln in Form von Ferritringen installiert werden. Dadurch wird 
+eine allfällige Abstrahlung und Störung über die Versorgungsleitungen 
+reduziert. 
+
+\noindent Da bei der Inbetriebnahme keine Störungen auftreten, wird auf obige 
+optionale Erweiterungen verzichtet. 
