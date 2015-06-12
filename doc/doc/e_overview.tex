@@ -29,9 +29,9 @@
         % Power connections
         \draw[very thick, ->, red]  (frdm.west)         -- node[above] {5\si{\volt}}    (bt.east);
         \draw[very thick, ->, red]  (supply.north)      -- node[right] {5\si{\volt}}    (frdm);
-        \draw[very thick, ->, red]  (supply.base east) -| ++(1.7cm, 0)     |- node[below right] {48\si{\volt}} (step-drv.base west);
-        \draw[very thick, ->, red]  (supply.base east) -| ++(1.7cm, 0)     |- node[below right] {48\si{\volt}} (bldc-drv.base west);
-        \draw[very thick, ->, red]  (supply.east) -| ++(1.2cm, 0)     |- node[below right] {24\si{\volt}} (dc-drv.base west);
+        \draw[very thick, ->, red]  (supply.base east) -| ++(1.7cm, 0)     |- node[below right] {24\si{\volt}} (step-drv.base west);
+        \draw[very thick, ->, red]  (supply.base east) -| ++(1.7cm, 0)     |- node[below right] {24\si{\volt}} (bldc-drv.base west);
+        \draw[very thick, ->, red]  (supply.east) -| ++(1.2cm, 0)     |- node[below right] {12\si{\volt}} (dc-drv.base west);
     \end{tikzpicture}
     \caption{Übersicht Elektrotechnik}
 \end{figure}
