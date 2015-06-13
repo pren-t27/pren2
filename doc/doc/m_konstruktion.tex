@@ -63,7 +63,7 @@ Als Servo dient ein HS85MG der Firma Hitec. Dieses ist wie folgt spezifiziert:
         3.0\si{\kilogram\per\centi\metre} &
         3.5\si{\kilogram\per\centi\metre} \\
     \end{zebratabular}
-    \caption{Spezifikation Servomotor}
+    \caption{Spezifikation Servomotor Hitec HS85MG}
 \end{table}
 Dies ergibt folgende Spezifikationen für den sich daraus ergebenden DC Motor: 
 \begin{table}[h!]
@@ -73,20 +73,50 @@ Dies ergibt folgende Spezifikationen für den sich daraus ergebenden DC Motor:
         Parameter &
         Wert bei 4.8\si{\volt} &
         Wert bei 6.0\si{\volt} \\
-        Stellgeschwindigkeit (60\si{\degree}) &
+        Drehzahl &
         62.5\si{\per\minute} &
         71.4\si{\per\minute} \\
         Drehmoment &
         0.3\si{\newton\metre} &
         0.35\si{\newton\metre} \\
     \end{zebratabular}
-    \caption{Spezifikation DC Motor}
+    \caption{Spezifikation DC Motor basierend auf Hitec HS85MG}
 \end{table}
 Beim Dauerbetrieb zeigt sich dieser Motor als zu schwach. Um eine akzeptable 
 Abschusskadenz zu erreichen muss er mit einer Spannung von 16\si{\volt} 
 betrieben werden. Dieser Belastung ist der Motor nicht gewachsen. Nach einigen 
 Versuchen weist er einen Kurzschluss auf und muss ersetzt werden. Als Ersatz 
-kommt ein Servo vom Typ ??? von Conrad zum Einsatz. 
+kommt ein Servo vom Typ TS-301 MGBB von Conrad zum Einsatz. Dieser kann an 
+einer Spannung von 12\si{\volt} bei einem Tastgrad von 85\% problemlos 
+betrieben werden. Gleichzeitig wird die Übersetzung des Riemenantriebs auf ein 
+Verhältnis von 2:1 erhöht. 
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{ll}
+        \rowcolor{gray}
+        Parameter &
+        Wert bei 4.8\si{\volt} \\
+        Stellgeschwindigkeit (50\si{\degree}) &
+        0.22\si{\second} \\
+        Drehmoment &
+        3.5\si{\kilogram\per\centi\metre} \\
+    \end{zebratabular}
+    \caption{Spezifikation Servomotor Conrad TS-301 MGBB}
+\end{table}
+Dies ergibt folgende Spezifikationen für den sich daraus ergebenden DC Motor: 
+\begin{table}[h!]
+    \centering
+    \begin{zebratabular}{lll}
+        \rowcolor{gray}
+        Parameter &
+        Wert bei 4.8\si{\volt} \\
+        Drehzahl &
+        37.9\si{\per\minute} \\
+        Drehmoment &
+        0.35\si{\newton\metre} \\
+    \end{zebratabular}
+    \caption{Spezifikation DC Motor basierend auf Conrad TS-301 MGBB}
+\end{table}
 
 \subsubsection{Drehvorrichtung}
 Die Drehvorrichtung dient zur horizontalen Ausrichtung der 
