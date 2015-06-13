@@ -14,4 +14,8 @@ PREN-ET entwickelt. (Siehe \ref{sec:pren-et} \nameref{sec:pren-et})
 Der Gleichstrommotor für den Ballnachschub wird mit einem 
 PWM\footnote{\textbf{P}ulse \textbf{W}idth \textbf{M}odulation} Signal 
 angesteuert. Über das Puls-Pausen-Verhältnis kann die Leistung des Motors 
-eingestellt werden. 
+eingestellt werden. Mit dem Signal Dir kann die Drehrichtung des Motors 
+gewählt werden. Die interne Generierung des PWM Signals wird nicht verwendet 
+und daher nicht bestückt. Da der verwendete Treiber mit Signalspannungen von 
+5\si{\volt} arbeitet, werden zwei Pegelwandler auf dem nicht benötigten Teil 
+der Schaltung diskret aufgebaut. 
