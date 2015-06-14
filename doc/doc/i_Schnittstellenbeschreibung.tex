@@ -28,9 +28,10 @@ Die Schnittstelle stellt folgende Methoden und Datentypen zur Verfügung:  \\
 Details zu den Methoden und den verwendeten Datentypen sind in der JavaDoc festgehalten. \\
 \paragraph{Einsatz, Abläufe, Voraussetzungen und Zusicherungen}
 \begin{itemize}
-	\item{Bevor Daten über die Schnittstelle ausgetauscht werden können, muss mittels initConnections(String serialPortName) ein gültiger serieller Port definiert werden. Der konfigurierte Port gilt für alle darauf folgenden command-Aufrufe. }
-	\item{Ein Wechsel des seriellen Ports, d.h. Umkonfigurierung mit initConnections(String serialPortName), ist nun jederzeit möglich.}
-	\item{Eine Klasse, die das Interface BluetoothReceiverListener implementiert, kann als Observer für empfangene Nachrichten des BluetoothReceivers fungieren.}
+	\item{Bevor Daten über die Schnittstelle ausgetauscht werden können, muss mittels 
+\verb?initConnections(String serialPortName)? ein gültiger serieller Port definiert werden. Der konfigurierte Port gilt für alle darauf folgenden command-Aufrufe. }
+	\item{Ein Wechsel des seriellen Ports, d.h. Umkonfigurierung mit \verb?initConnections(String serialPortName)?, ist nun jederzeit möglich.}
+	\item{Eine Klasse, die das Interface \verb?BluetoothReceiverListener? implementiert, kann als Observer für empfangene Nachrichten des BluetoothReceivers fungieren.}
 \end{itemize}
 \paragraph{Aufbau und Konfiguration} 
 Keine zusätzlichen Informationen. \\
@@ -72,8 +73,8 @@ Details zu den Methoden und den verwendeten Datentypen sind in der JavaDoc festg
 
 \paragraph{Einsatz, Abläufe, Voraussetzungen und Zusicherungen}
 \begin{itemize}
-	\item{Die Erkennung Klasse wird wie folgt initialisiert: Erkennung erkenner = new Erkennung(); }
-	\item{Es gibt die FUnktion processFrame(Mat frame) mit welchem ein Bild abgearbeitet wird und den Winkel als double zurückliefert.}
+	\item{Die Erkennung Klasse wird wie folgt initialisiert: \verb?Erkennung erkenner = new Erkennung();? }
+	\item{Es gibt die Funktion \verb?processFrame(Mat frame)? mit welchem ein Bild abgearbeitet wird und den Winkel als double zurückliefert.}
 \end{itemize}
 
 \paragraph{Aufbau und Konfiguration} 
@@ -118,8 +119,8 @@ Details zu den Methoden und den verwendeten Datentypen sind in der JavaDoc festg
 
 \paragraph{Einsatz, Abläufe, Voraussetzungen und Zusicherungen}
 \begin{itemize}
-	\item{Die ImageGetter-Klasse wird wie folgt initialisiert: ImageHandler imgHandler = new ImageHandler(); }
-	\item{Mittels startReceiving() der StreamGetter-Thread gestartet werden. Der StreamGetter steuert die Kamera an und speichert immer das aktuellste Bild. Dieses kann vom ImageHandler mittels getImage() geholt werden. Der ImageHandler stellt dieses Bild dann mit der eigenen getImage()-Funktion als Mat-Objekt zu Verfügung. Der Thread kann mittels terminateImages() beendet werden.}
+	\item{Die ImageGetter-Klasse wird wie folgt initialisiert: \verb?ImageHandler imgHandler = new ImageHandler();? }
+	\item{Mittels \verb?startReceiving()? der StreamGetter-Thread gestartet werden. Der StreamGetter steuert die Kamera an und speichert immer das aktuellste Bild. Dieses kann vom ImageHandler mittels \verb?getImage()? geholt werden. Der ImageHandler stellt dieses Bild dann mit der eigenen \verb?getImage()?-Funktion als Mat-Objekt zu Verfügung. Der Thread kann mittels \verb?terminateImages()? beendet werden.}
 \end{itemize}
 
 \paragraph{Aufbau und Konfiguration} 
