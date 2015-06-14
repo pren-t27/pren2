@@ -36,7 +36,7 @@ Kabelkanal verwendet werden.
 Der Ballnachschub besteht im Wesentlichen aus einer Trommel, einem Stahlband 
 und einem Servomotor. Das Stahlband wird im Inneren des Balllagers um die 
 Bälle herum ausgelegt. Durch das Aufwickeln des Bandes auf die Trommel werden 
-die Bälle Richtung Beschleunigungsrad befördert. Der Antrieb erfolgt durch einen 
+die Bälle in Richtung Beschleunigungsrad befördert. Der Antrieb erfolgt durch einen 
 umgebauten Servomotor, welcher mittels Zahnriemen mit der Welle der Trommel 
 verbunden ist.
 
@@ -65,6 +65,8 @@ Als Servo dient ein HS85MG der Firma Hitec. Dieses ist wie folgt spezifiziert:
     \end{zebratabular}
     \caption{Spezifikation Servomotor Hitec HS85MG}
 \end{table}
+
+\noindent
 Dies ergibt folgende Spezifikationen für den sich daraus ergebenden DC Motor: 
 \begin{table}[h!]
     \centering
@@ -149,17 +151,19 @@ Aluminium gefräst. Als Grundlage für den Motor dienen Motoren aus
 Diskettenlaufwerken. Diese besitzen 10 Polpaare und 15 Nuten. Diese 
 Konfiguration wird grundsätzlich beibehalten. Jedoch wird der neue Motor aus 
 den Statorblechen von zwei Diskettenlaufwerkmotoren aufgebaut. Dies dient 
-dazu, den magnetischen Querschnitt zu vergrössern. Für die Dauermagnete des 
-Rotors kam im Laufwerk ein Magnetring zum Einsatz. Im neuen Rotor werden die 
-Dauermagnete mittels Neodymmagneten realisiert. Dabei wird ein Halbach-Array 
+dazu, den magnetischen Querschnitt zu vergrössern. Für die Fremderregung des 
+Rotors kam im Laufwerk ein Magnetring zum Einsatz. Im neuen Rotor wird die 
+Erregung mittels Neodymmagneten realisiert. Dabei wird ein Halbach-Array 
 aufgebaut. Deshalb kommen Magnete mit einer quadratischen Grundfläche zum 
 Einsatz. 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth]{fig/halbach.pdf}
-    \caption{Ausschnitt aus verwendetem Halbach-Array mit Rückschlussring}
+    \caption{Ausschnitt aus dem verwendetem Halbach-Array mit Rückschlussring (Rückschlussring unten)}
     \label{fig:halbach}
 \end{figure}
+
+\noindent
 Ein Halbach-Array hat den Vorteil, dass die Feldlinien auf einer 
 Seite gebündelt werden, sich auf der Anderen hingegen beinahe aufheben. 
 Als Rückschluss kommt ein Stahlring zum Einsatz, welcher in den Rotor 
@@ -174,11 +178,11 @@ Dauermagneten zu bündeln und so den magnetischen Kreis zu schliessen.
 \end{figure}
 
 \subsubsection{Turm}
-Der Turm dient als Verbindungselement des Balllagers mit dem grossen Zahnrad 
+Der Turm dient als Verbindungselement zwischen Balllager und grossen Zahnrad 
 der Drehvorrichtung. Aufgebaut wird die gesamte Konstruktion aus 
 Aluminiumblech. Der Platz im Inneren wird zum Verstauen der 
 Elektronikkomponenten verwendet. Deswegen wird die vordere Abdeckplatte als 
-Wartungsklappe ausgeführt. Die Abdeckplatte wird mit Schrauben anstatt mit 
+Wartungsklappe ausgeführt. Die Abdeckplatte wird mit Schrauben anstelle von 
 Nieten befestigt.
 
 \begin{figure}[h!]
