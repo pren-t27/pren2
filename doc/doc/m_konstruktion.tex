@@ -1,5 +1,38 @@
 \section{Übersicht Maschinentechnik}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \node[above right] (img) at (0,0) {\includegraphics[width=0.77\textwidth]{fig/Bild_mit_Kamera.png}};
+        \draw[line width=1pt]
+        (1, 12) node[above=2mm] {\ref{sec:balllager} \nameref{sec:balllager}}
+        -- (3.7, 9.2);
+        \fill (3.7, 9.2) circle (2pt);
+        \draw[line width=1pt]
+        (3, 14) node[above=2mm] {\ref{sec:ballnachschub} \nameref{sec:ballnachschub}}
+        -- (6.4, 11.6);
+        \fill (6.4, 11.6) circle (2pt);
+        \draw[line width=1pt]
+        (3.7, 2.8) node[below=2mm] {\ref{sec:drehvorrichtung} \nameref{sec:drehvorrichtung}}
+        -- (6, 5.9);
+        \fill (6, 5.9) circle (2pt);
+        \draw[line width=1pt]
+        (11, 15) node[above=2mm] {\ref{sec:motor} \nameref{sec:motor}}
+        -- (7.6, 14);
+        \fill (7.6, 14) circle (2pt);
+        \draw[line width=1pt]
+        (12, 10) node[above=2mm] {\ref{sec:turm} \nameref{sec:turm}}
+        -- (8, 8);
+        \fill (8, 8) circle (2pt);
+        \draw[line width=1pt]
+        (10.0, 2.0) node[below=1mm] {\ref{sec:camera} \nameref{sec:camera}}
+        -- (8.5, 4.7);
+        \fill (8.5,4.7) circle (2pt);
+    \end{tikzpicture}
+    \caption{Übersicht Komponenten}
+    \label{fig:overview}
+\end{figure}
 
+\clearpage
 \subsection{Beschreibung der Komponenten}
 Die Konstruktion besteht hauptsächlich aus Aluminium-Blechteilen. Einige 
 Komponenten müssen aus konstruktiven Gründen als Frästeile ausgeführt werden. 
@@ -10,12 +43,13 @@ Stabilität mit sich bringt, werden die Aussparungen, wie im Flugzeugbau
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig/IMAG0364.jpg}
+    \includegraphics[width=0.4\textwidth]{fig/IMAG0364.jpg}
     \caption{Seitenteil Balllager}
     \label{fig:balllager_side}
 \end{figure}
 
 \subsubsection{Balllager}
+\label{sec:balllager}
 Das Balllager dient als Grundstruktur, an welcher der Ballnachschub und der 
 Motor befestigt sind. Gelagert werden die Bälle im Inneren des quadratischen 
 Querschnittes. Die Halterungen des Motors werden jeweils auf beiden 
@@ -26,12 +60,13 @@ Kabelkanal verwendet werden.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig/15.png}
+    \includegraphics[width=0.6\textwidth, trim=0 10 0 10, clip=true]{fig/15.png}
     \caption{Balllager}
     \label{fig:balllager}
 \end{figure}
 
 \subsubsection{Ballnachschub}
+\label{sec:ballnachschub}
 Der Ballnachschub besteht im Wesentlichen aus einer Trommel, einem Stahlband 
 und einem Servomotor. Das Stahlband wird im Inneren des Balllagers um die 
 Bälle herum ausgelegt. Durch das Aufwickeln des Bandes auf die Trommel werden 
@@ -41,7 +76,7 @@ verbunden ist.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig/DSC02958.JPG}
+    \includegraphics[width=0.6\textwidth]{fig/DSC02958.JPG}
     \caption{Ballnachschub}
     \label{fig:ballnachschub}
 \end{figure}
@@ -120,6 +155,7 @@ Dies ergibt folgende Spezifikationen für den sich daraus ergebenden DC Motor:
 \end{table}
 
 \subsubsection{Drehvorrichtung}
+\label{sec:drehvorrichtung}
 Die Drehvorrichtung dient zur horizontalen Ausrichtung der 
 Abschussvorrichtung. Um eine genaue Positionierung und ausreichende Stabilität 
 zu ermöglichen, wird ein Zahnrad durch zwei Axial-Rillenkugellager auf einer 
@@ -129,7 +165,7 @@ garantieren an der Unterseite der Füsse angeklebte Gummimatten.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig/DSC02962.JPG}
+    \includegraphics[width=0.65\textwidth]{fig/DSC02962.JPG}
     \caption{Drehvorrichtung}
     \label{fig:drehvorrichtung}
 \end{figure}
@@ -143,7 +179,8 @@ folgende Auflösung:
 = 0.17578 \frac{'}{\text{Schritt}} = 10.547 \frac{''}{\text{Schritt}}
 \rightarrow 341.33 \frac{\text{Schritte}}{^\circ}\]
 
-\subsubsection{Motor}
+\subsubsection{BLDC Motor}
+\label{sec:motor}
 Der Motor für die Ballbeschleunigung wird als Eigenkonstruktion ausgeführt.  
 Der Läufer dient dabei als Felge des Beschleunigungsrades und wird aus 
 Aluminium gefräst. Als Grundlage für den Motor dienen Motoren aus 
@@ -157,7 +194,7 @@ aufgebaut. Deshalb kommen Magnete mit einer quadratischen Grundfläche zum
 Einsatz. 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig/halbach.pdf}
+    \includegraphics[width=0.6\textwidth]{fig/halbach.pdf}
     \caption{Ausschnitt aus dem verwendetem Halbach-Array mit Rückschlussring (Rückschlussring unten)}
     \label{fig:halbach}
 \end{figure}
@@ -171,22 +208,34 @@ Dauermagneten zu bündeln und so den magnetischen Kreis zu schliessen.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig/DSC02968.JPG}
+    \includegraphics[width=0.7\textwidth]{fig/DSC02968.JPG}
     \caption{Motor}
     \label{fig:motor}
 \end{figure}
 
+\clearpage
 \subsubsection{Turm}
+\label{sec:turm}
 Der Turm dient als Verbindungselement zwischen Balllager und grossen Zahnrad 
 der Drehvorrichtung. Aufgebaut wird die gesamte Konstruktion aus 
 Aluminiumblech. Der Platz im Inneren wird zum Verstauen der 
 Elektronikkomponenten verwendet. Deswegen wird die vordere Abdeckplatte als 
 Wartungsklappe ausgeführt. Die Abdeckplatte wird mit Schrauben anstelle von 
 Nieten befestigt.
-
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig/DSC02985.JPG}
+    \includegraphics[width=0.6\textwidth]{fig/DSC02985.JPG}
     \caption{Turm}
     \label{fig:turm}
+\end{figure}
+
+\subsubsection{Kamera}
+\label{sec:camera}
+Die Kamera für die Korberkennung wird unten an der Grundplatte mit zwei 
+Schrauben befestigt. Dazu werden zwei Muttern an der Kamera angeklebt. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth, trim=400 400 400 400, clip=true]{fig/DSC02993.JPG}
+    \caption{Kamera}
+    \label{fig:camera}
 \end{figure}
