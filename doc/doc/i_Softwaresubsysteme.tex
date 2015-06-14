@@ -5,17 +5,18 @@ Das Bluetoothmodul setzt sich im Wesentlichen aus drei Komponenten zusammen. Die
 \begin{itemize}
 	\item{\textbf{BluetoothSender:} Diese Klasse übernimmt die Befehlsübermittlung an das Freedomboard.}
 	\item{\textbf{BluetoothReceiver:} Diese Klasse ist für das Empfangen der Statusnachrichten vom Freedomboard zuständig. Sie enthält eine Liste von BluetoothReceiverListener, deren Implementationen als Observer fungieren.}
-	\item{\textbf{BluetoothController:} Der BluetoothController übernimmt die Initialisierung und Steuerung der einzelnen Komponenten und regelt deren Zusammenspiel. Er dient ausserdem als "Durchlauferhitzer" für BluetoothReceiverListener-Implementationen, damit diese sich beim BluetoothReceiver als Observer anmelden können.}
+	\item{\textbf{BluetoothController:} Der BluetoothController übernimmt die Initialisierung und Steuerung der einzelnen Komponenten und regelt deren Zusammenspiel. Er dient ausserdem als "'Durchlauferhitzer"' für BluetoothReceiverListener-Implementationen, damit diese sich beim BluetoothReceiver als Observer anmelden können.}
 \end{itemize}
 
 \subsubsection{Bilderkennung}
+Um die Bilderkennung zu optimieren, wird statt des ganzen Bildes lediglich ein 
+Teilausschnitt verwendet.  Der Bildausschnit wird mittels Maus-Drag 
+ausgewählt. Der markierte Bereich wird danach auf dem Bildschirm dargestellt. \\
 
-Um die Bilderkennung zu optimieren, wird statt des ganzen Bildes lediglich ein Teilausschnitt verwendet.
-Der Bildausschnit wird mittels Maus-Drag ausgewählt. Der markierte Bereich wird danach auf dem Bildschrim 
-dargestellt. \\
-
-Durch den kleineren Bildausschnitt, wird die Auswertung des Bildes schneller durchgeführt. Im folgenden hat
-sieht man wie der markierte Bereich auf dem Interface aussieht.\\
+\noindent
+Durch den kleineren Bildausschnitt, wird die Auswertung des Bildes schneller 
+durchgeführt. Im folgenden sieht man wie der markierte Bereich auf dem 
+Interface aussieht.\\
 
 \begin{figure}[h!]          
 	\centering             
@@ -26,12 +27,15 @@ sieht man wie der markierte Bereich auf dem Interface aussieht.\\
 
 Der Ablauf der Bilderkennung funktioniert folgendermassen:
 \begin{itemize}
-	\item Der Bildausschnitt wird in ein schwarz/weiss Bild umgewandelt.
+	\item Der Bildausschnitt wird in ein schwarz/weiss Bild umgewandelt. \\
+        Der Korb wird weiss, der Hintergrund schwarz dargestellt. 
 	\item Ein Algorithmus scannt den Bildausschnitt Zeile für Zeile.
-	\subitem Es wird oben Links im Bildausschnitt gestartet.
-	\subitem Es wird Pixel für Pixel durchgelaufen und das erste weisse Pixel gespeichert.
-	\subitem Das Endpixel wird bestimmt, wenn auf das weisse Pixel ein schwazes Pixel folgt.
-	\subitem Von den Start und Endpunkte über die verschiedenen Zeilen wird der Mittelwert berechnet.
+    \begin{itemize}
+	    \item Es wird oben Links im Bildausschnitt gestartet.
+	    \item Es wird Pixel für Pixel durchgelaufen und das erste weisse Pixel gespeichert.
+	    \item Das Endpixel wird bestimmt, wenn auf das weisse Pixel ein schwazes Pixel folgt.
+	    \item Von den Start und Endpunkte über die verschiedenen Zeilen wird der Mittelwert berechnet.
+    \end{itemize}
 \end{itemize}
 
 \begin{figure}[h!]          
@@ -41,8 +45,11 @@ Der Ablauf der Bilderkennung funktioniert folgendermassen:
 	\label{fig:Bilderkennung_ablauf}        
 \end{figure}
 
-Mit dem gefundenen Mittelwert kann anhand von Geometrie der Winkel von der Maschine zum Korb bestimmt werden.
-Es tritt ein Problem bei der Winkelbestimmung auf, falls der Korb sich links oder rechts am Rand befindet.
-Da der Blick der Kamera kegelförmig ist, wird nicht der gesammte Korb erfasst. Die äussere Hälft des Korbs fehlt
-und dies führt dazu, dass der Winkel zu klein ist. Das Problem wird behoben, indem bei der Überschreitung eines
+\noindent
+Mit dem gefundenen Mittelwert kann anhand von Geometrie der Winkel von der 
+Maschine zum Korb bestimmt werden.  Es tritt ein Problem bei der 
+Winkelbestimmung auf, falls der Korb sich links oder rechts am Rand befindet.  
+Da der Blick der Kamera kegelförmig ist, wird nicht der gesammte Korb erfasst. 
+Die äussere Hälfte des Korbs fehlt und dies führt dazu, dass der Winkel zu 
+klein ist. Das Problem wird behoben, indem bei der Überschreitung eines 
 Maximalwertes, der Winkel um ca. ein Grad erhöht wird.
