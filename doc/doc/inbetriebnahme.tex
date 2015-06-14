@@ -60,31 +60,31 @@ Applikation bereits vor dem Wettkampfstart auf eine Drehzahl von
 \noindent
 Anschliessend wird mittels Bilderkennung ein aktuelles Foto des Spielfelds 
 geschossen. Auf diesem Foto wird per Mausziehen der Bereich des Spielfeldes 
-ausgewählt. Wird nun das Startsignal gegeben, kann einen Button gedrückt 
-werden, der dann die Ausrichtung des Geräts übernimmt und den Ballnachschub 
-nach einer Verzögerung von $\frac{\text{Anzahl Ticks}}{20}$ in Bewegung setzt.
+ausgewählt. Wird nun das Startsignal gegeben, kann ein Button gedrückt werden, 
+der dann die Ausrichtung des Geräts übernimmt und den Ballnachschub nach einer 
+Verzögerung von $\frac{\text{Anzahl Schritte}}{20}$ in Bewegung setzt.
 
 \noindent
 Sind alle Bälle geworfen, wird ein String an alle Observer des 
-BluetoothReceivers gesendet. Enthält dieser String "fin", so heisst dies, dass 
-das Gerät alle Bälle verschossen hat und somit das Endsignal ausgelöst werden 
-kann. Nach dem Endsignal ist der Test beendet.
+\verb?BluetoothReceivers? gesendet. Enthält dieser String "fin", so heisst 
+dies, dass das Gerät alle Bälle verschossen hat und somit das Endsignal 
+ausgelöst werden kann. Nach dem Endsignal ist der Test beendet.
 
 \subsubsection{Resultate}
 \noindent
 Die ersten Tests zeigen, dass die Ballnachführung nicht zeitgleich mit 
 dem Ausrichten in Bewegung gesetzt werden darf, da ansonsten der erste Ball 
 nicht trifft, wenn der Korb am Rand des Spielfelds steht. Integrationstests 
-dieser beiden Komponenten haben zeigen, dass die optimale Verzögerungszeit 
-für den Start der Ballnachführung nach dem Ausrichten bei $\frac{\text{Anzahl 
-Ticks}}{20}$ liegt. 
+dieser beiden Komponenten zeigen, dass die optimale Verzögerungszeit für den 
+Start der Ballnachführung nach dem Ausrichten bei $\frac{\text{Anzahl 
+Schritte}}{20}$ liegt. 
 
 \noindent
-Weitere Tests haben zeigen, dass bei der anfangs konfigurierten Drehzahl von 
+Weitere Tests zeigen, dass bei der anfangs konfigurierten Drehzahl von 
 1372\si{\per\minute} der erste Ball bei einem Ausrichtungswinkel von mehr als 
 $16^\circ$ nicht trifft. Dies liegt daran, dass der erste Ball mit einer 
 niedrigeren Geschwindigkeit an das Rad geführt wird, als die anderen Bälle. 
 Dieses Problem ist nun behoben worden, indem der BLDC-Motor anfangs auf 
 1400\si{\per\minute} eingestellt wird und zeitgleich zum Ausrichten auf 
 1372\si{\per\minute} heruntergefahren wird. Bei Tests mit dieser Konfiguration 
-teffen alle Bälle den Korb.
+treffen alle Bälle den Korb.
