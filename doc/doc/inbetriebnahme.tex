@@ -2,7 +2,6 @@
 Hier werden die Inbetriebnahmetests beschrieben.
 
 \subsection{Tests Einzelkomponenten}
-
 Kurz nach der Endmontage werden die einzelnen Komponenten getestet. Eine erste 
 Inbetriebnahme des Ballnachschubs zeigt, das die Funktion gewährleistet ist. 
 Das Drehmoment des Servomotors genügt um die 5 Bälle nach oben zu befördern. 
@@ -52,40 +51,41 @@ sollten ca. 1/5 Sekunde reichen um die Richtung einzustellen.
 
 \subsection{Tests Gesamtsystem}
 \subsubsection{Ablauf}
-Die Tests des Gesamtsystems wurden durchgeführt, um das Zusammenspiel und 
+Die Tests des Gesamtsystems werden durchgeführt, um das Zusammenspiel und 
 richtige Funktionieren der einzelnen Komponenten zu gewährleisten. Dazu wird 
 eine Bluetooth-Verbindung mit dem Gerät hergestellt. Da der BLDC-Motor beim 
 Wettkampf bereits gestartet sein darf, wird dieser mittels Eingabefeld der 
 Applikation bereits vor dem Wettkampfstart auf eine Drehzahl von 
-$\dfrac{1400\,Umdrehungen}{Minute}$ konfiguriert.
+1400\si{\per\minute} konfiguriert.
 
 \noindent
 Anschliessend wird mittels Bilderkennung ein aktuelles Foto des Spielfelds 
 geschossen. Auf diesem Foto wird per Mausziehen der Bereich des Spielfeldes 
-ausgewählt. Wird nun das Startsignal gegeben, kann man einen Button drücken, 
-der dann die Ausrichtung des Geräts übernimmt und den Ballnachschub nach einer 
-Verzögerung von $\frac{Anzahl\,Ticks}{20}$ in Bewegung setzt.
+ausgewählt. Wird nun das Startsignal gegeben, kann einen Button gedrückt 
+werden, der dann die Ausrichtung des Geräts übernimmt und den Ballnachschub 
+nach einer Verzögerung von $\frac{\text{Anzahl Ticks}}{20}$ in Bewegung setzt.
 
 \noindent
-Sind alle Bälle geworfen worden, wird ein String an alle Observer des 
+Sind alle Bälle geworfen, wird ein String an alle Observer des 
 BluetoothReceivers gesendet. Enthält dieser String "fin", so heisst dies, dass 
-das Gerät die Bälle alle verschossen hat und somit das Endsignal ausgelöst 
-werden kann. Nach dem Endsignal ist der Test beendet.
+das Gerät alle Bälle verschossen hat und somit das Endsignal ausgelöst werden 
+kann. Nach dem Endsignal ist der Test beendet.
 
 \subsubsection{Resultate}
 \noindent
-Die ersten Tests haben gezeigt, dass die Ballnachführung nicht zeitgleich mit 
+Die ersten Tests zeigen, dass die Ballnachführung nicht zeitgleich mit 
 dem Ausrichten in Bewegung gesetzt werden darf, da ansonsten der erste Ball 
-nicht trifft. Integrationstests dieser beiden Komponenten haben gezeigt, dass 
-die optimale Verzögerungszeit für den Start der Ballnachführung nach dem 
-Ausrichten bei $\frac{Anzahl\,Ticks}{20}$ liegt. 
+nicht trifft, wenn der Korb am Rand des Spielfelds steht. Integrationstests 
+dieser beiden Komponenten haben zeigen, dass die optimale Verzögerungszeit 
+für den Start der Ballnachführung nach dem Ausrichten bei $\frac{\text{Anzahl 
+Ticks}}{20}$ liegt. 
 
 \noindent
-Weitere Tests haben gezeigt, dass bei der Anfangs konfigurierten Drehzahl von 
-1372 pro Minute der erste Ball bei einem $Ausrichtungswinkel > 16^\circ$ 
-nicht trifft. Dies liegt daran, dass der erste Ball mit einer niedrigeren 
-Geschwindigkeit an das Rad geführt wird, als die anderen Bälle. Dieses Problem 
-ist nun behoben worden, indem der BLDC-Motor anfangs auf 
-$\frac{1400\,Umdrehungen}{Minute}$ eingestellt wird und zeitgleich zum 
-Ausrichten auf $\frac{1372\,Umdrehungen}{Minute}$ heruntergefahren wird. 
-Tests mit dieser Konfiguration haben seither alle Bälle versenkt.
+Weitere Tests haben zeigen, dass bei der anfangs konfigurierten Drehzahl von 
+1372\si{\per\minute} der erste Ball bei einem Ausrichtungswinkel von mehr als 
+$16^\circ$ nicht trifft. Dies liegt daran, dass der erste Ball mit einer 
+niedrigeren Geschwindigkeit an das Rad geführt wird, als die anderen Bälle. 
+Dieses Problem ist nun behoben worden, indem der BLDC-Motor anfangs auf 
+1400\si{\per\minute} eingestellt wird und zeitgleich zum Ausrichten auf 
+1372\si{\per\minute} heruntergefahren wird. Bei Tests mit dieser Konfiguration 
+teffen alle Bälle den Korb.
