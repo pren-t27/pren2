@@ -1,4 +1,12 @@
 \section{Übersicht Elektronik}
+Mit der Kamera können Bilder des Spielfeldes aufgenommen und per USB an den 
+Laptop übertragen werden. Der Laptop kommuniziert über Bluetooth mit dem 
+Bluetoothmodul HC-06, welches an das Controllboard FRDM-KL25Z angeschlossen 
+ist. Das FRDM-KL25Z steuert die einzelnen Motortreiber an, welche mit jeweils 
+einem Motor verbunden sind. Der Schrittmotor wird für die Ausrichtung des 
+Turms verwendet. Der BLDC Motor beschleunigt die Bälle. Mit dem DC Motor 
+werden die Bälle zum Beschleunigungsrad befördert. Das Controllboard und die 
+Motortreiber werden von einem gemeinsamen Netzteil mit Energie versorgt. 
 \tikzstyle{block} = [ rectangle, rounded corners, minimum width=1.5cm, minimum height=1cm, draw=black ]
 \begin{figure}[h!]
     \centering
@@ -15,9 +23,9 @@
         \node (dc-drv)      [block, above of=bldc-drv]  {DC Treiber};
         \node (dc)          [block, right of=dc-drv]    {DC Motor};
         % Data connections
-        \draw[very thick, ->, green]    (frdm.south east)   -| ++(0.2cm, 0)     |- (step-drv.west);
+        \draw[very thick, ->, green]    (frdm.350)          -| ++(0.2cm, 0)     |- (step-drv.170);
         \draw[very thick, ->, green]    (frdm.east)         -| ++(0.2cm, 0)     |- (bldc-drv.west);
-        \draw[very thick, ->, green]    (frdm.north east)   -| ++(0.2cm, 0)     |- (dc-drv.west);
+        \draw[very thick, ->, green]    (frdm.10)           -| ++(0.2cm, 0)     |- (dc-drv.west);
         \draw[very thick, <->, green]   (frdm.base west)    -- node[below] {UART} (bt.base east);
         % Wireless data connection
         \draw[very thick, <->, green, dashed]   (bt)        -- node[right] {Bluetooth} (computer);
@@ -27,11 +35,11 @@
         \draw[very thick, <->, blue]    (bldc-drv)  -- (bldc);
         \draw[very thick, ->, blue]     (dc-drv)    -- (dc);
         % Power connections
-        \draw[very thick, ->, red]  (frdm.west)         -- node[above] {5\si{\volt}}    (bt.east);
-        \draw[very thick, ->, red]  (supply.north)      -- node[right] {5\si{\volt}}    (frdm);
-        \draw[very thick, ->, red]  (supply.base east) -| ++(1.7cm, 0)     |- node[below right] {48\si{\volt}} (step-drv.base west);
-        \draw[very thick, ->, red]  (supply.base east) -| ++(1.7cm, 0)     |- node[below right] {48\si{\volt}} (bldc-drv.base west);
-        \draw[very thick, ->, red]  (supply.east) -| ++(1.2cm, 0)     |- node[below right] {24\si{\volt}} (dc-drv.base west);
+        \draw[very thick, ->, red]  (frdm.west)      -- node[above] {5\si{\volt}}    (bt.east);
+        \draw[very thick, ->, red]  (supply.north)   -- node[right] {5\si{\volt}}    (frdm);
+        \draw[very thick, ->, red]  (supply.350)     -| ++(1.7cm, 0)     |- node[below right] {24\si{\volt}} (step-drv.185);
+        \draw[very thick, ->, red]  (supply.350)     -| ++(1.7cm, 0)     |- node[below right] {24\si{\volt}} (bldc-drv.190);
+        \draw[very thick, ->, red]  (supply.10)      -| ++(1.2cm, 0)     |- node[below right] {12\si{\volt}} (dc-drv.190);
     \end{tikzpicture}
     \caption{Übersicht Elektrotechnik}
 \end{figure}
