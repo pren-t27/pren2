@@ -19,7 +19,7 @@
 Die Schnittstelle stellt folgende Methoden und Datentypen zur Verfügung:  \\
 \begin{figure}[h!]          
 	\centering             
-	\includegraphics[width=1\textwidth]{../fig/Klassendiagramm_Bluetoothmodul.png}
+	\includegraphics[width=0.9\textwidth, trim=0 10 0 0, clip=true]{../fig/Klassendiagramm_Bluetoothmodul.png}
 	\caption{Klassendiagramm Bluetoothmodul}
 	\label{fig:Klassendiagramm Bluetoothmodul}        
 \end{figure} \\
@@ -33,8 +33,10 @@ Details zu den Methoden und den verwendeten Datentypen sind in der JavaDoc festg
 	\item{Ein Wechsel des seriellen Ports, d.h. Umkonfigurierung mit \verb?initConnections(String serialPortName)?, ist nun jederzeit möglich.}
 	\item{Eine Klasse, die das Interface \verb?BluetoothReceiverListener? implementiert, kann als Observer für empfangene Nachrichten des BluetoothReceivers fungieren.}
 \end{itemize}
+%\clearpage
+%\noindent
 \textbf{Aufbau und Konfiguration} \\
-Keine zusätzlichen Informationen. \\
+Keine zusätzlichen Informationen. \\\\
 \textbf{Fehlerbehandlung} \\
 Die Fehlerbehandlung wird über unchecked Exceptions realisiert. Details siehe JavaDoc. \\\\
 \textbf{Beispielverwendung} \\
@@ -140,6 +142,7 @@ Keine zusätzlichen Informationen. \\
 \textbf{Fehlerbehandlung} \\
 Die Fehlerbehandlung wird über unchecked Exceptions realisiert. Details siehe JavaDoc. \\
 
+\clearpage
 \noindent
 \textbf{Beispielverwendung} \\
 Der folgende Codeausschnitt zeigt die Verwendung der Schnittstelle anhand einer beispielhaften Implementation ImageGetter: \\
