@@ -1,0 +1,15 @@
+pres.pdf
+pres_handout.pdf
+praesentation_T27.pdf
+
+*.aux
+*.bbl
+*.blg
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.lot
+*.lof
+
