@@ -28,7 +28,7 @@
 % \setbeamercolor{title}{fg=prengreen}
 % \setbeamercolor{titlelike}{fg=prengreen}
 
-\newcommand{\lastpage}{14} % number of pages (update by hand)
+\newcommand{\lastpage}{15} % number of pages (update by hand)
 \newcommand{\xzero}{0.75} % initial x position of ball
 \newcommand{\yzero}{1.10} % initial y position of ball
 \newcommand{\dx}{4.50}
@@ -37,7 +37,11 @@
 \setbeamertemplate{footline}[text line]{%
 \smash{\begin{tikzpicture}
         \node[above right] (img) at (0,0) {\includegraphics[width=0.09\textwidth]{../doc/fig/Bild_mit_Kamera.png}};
-        \draw[fill=yellow, draw, thick] ({\x}, {(\yzero+\dy) - (\x - (\xzero+\dx/2))^2 * (\dy/\dx}) circle (0.10);
+        \ifnum\thepage>\lastpage
+            \draw[fill=yellow, draw, thick] ({\xzero + \dx}, {(\yzero+\dy) - ((\xzero + \dx) - (\xzero+\dx/2))^2 * (\dy/\dx)}) circle (0.10);
+        \else
+            \draw[fill=yellow, draw, thick] ({\x}, {(\yzero+\dy) - (\x - (\xzero+\dx/2))^2 * (\dy/\dx)}) circle (0.10);
+        \fi
         \draw[fill=gray] (5, 0.2) -- (5.5,0.2) -- (5.6, 1.0) -- (4.9, 1.0) -- (5, 0.2);
 \end{tikzpicture}}}
 %\setbeamertemplate{navigation symbols}{}
