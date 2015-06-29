@@ -10,6 +10,7 @@
 \input{abstract}
 \clearpage
 \setcounter{tocdepth}{2} % Tiefe des Inhaltsverzeichnisses
+\addcontentsline{toc}{section}{\protect\numberline{}Inhaltsverzeichnis}
 \tableofcontents
 \clearpage
 \pagenumbering{arabic}
@@ -37,6 +38,8 @@
 \clearpage
 \input{e_control}
 \clearpage
+\input{e_emv}
+\clearpage
 \input{e_test}
 \clearpage
 \input{i_overview}
@@ -47,12 +50,19 @@
 \clearpage
 \input{i_Softwaresubsysteme}
 \clearpage
-\input{inbetriebnahme}overview
+\input{inbetriebnahme}
+\clearpage
+\input{Finanzen_Maschinenstunden}
 \clearpage
 \input{discussion}
 \clearpage
 \listoffigures
+\addcontentsline{toc}{section}{\protect\numberline{}Abbildungsverzeichnis}
+\clearpage
 \listoftables
+\addcontentsline{toc}{section}{\protect\numberline{}Tabellenverzeichnis}
 \lstlistoflistings
+\addcontentsline{toc}{section}{\protect\numberline{}Listings}
 \input{quellen}
+\addtocontents{toc}{\protect\newpage}
 \include{appendix}

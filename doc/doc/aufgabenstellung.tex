@@ -3,13 +3,14 @@
 Es soll ein Gerät entwickelt werden, das Bälle in einen Korb befördern kann.  
 Das Spielfeld, auf dem die Aufgabe erledigt werden soll, ist dabei in 
 \autoref{fig:playfield} dargestellt. Das Gerät befindet sich vor dem 
-Startsignal im \mbox{\tikz{\draw[fill=yellow] (0,0) rectangle (0.25,0.25);} 
-Startbereich} und darf die in der Aufgabenstellung definierten Abmessungen nicht überschreiten. Nach dem Startsignal darf sich der Roboter innerhalb von 
-\mbox{\tikz{\draw[fill=yellow] (0,0) rectangle (0.25,0.25);} Start}- und 
-\mbox{\tikz{\draw[fill=cyan] (0,0) rectangle (0.25,0.25);} Bewegungsbereich} 
-bewegen. Der \mbox{\tikz{\draw[fill=red] (0,0) rectangle (0.25,0.25);} 
-verbotene Bereich} darf jedoch weder berührt noch überragt werden. Im 
-\mbox{\tikz{\draw[fill=green] (0,0) rectangle (0.25,0.25);} Zielbereich} 
+Startsignal im \mbox{Startbereich \tikz{\draw[fill=yellow] (0,0) rectangle 
+(0.25,0.25);}} und darf die, in der Aufgabenstellung definierten, Abmessungen 
+nicht überschreiten. Nach dem Startsignal darf sich der Roboter innerhalb von 
+\mbox{Start- \tikz{\draw[fill=yellow] (0,0) rectangle (0.25,0.25);}} und 
+\mbox{Bewegungsbereich \tikz{\draw[fill=cyan] (0,0) rectangle (0.25,0.25);}} 
+bewegen. Der \mbox{verbotene Bereich \tikz{\draw[fill=red] (0,0) rectangle 
+(0.25,0.25);}} darf jedoch weder berührt noch überragt werden. Im 
+\mbox{Zielbereich \tikz{\draw[fill=green] (0,0) rectangle (0.25,0.25);}} 
 befindet sich der Korb. Dieser wird erst direkt vor dem Startsignal platziert 
 und muss vom Gerät  gefunden werden. Hinter dem Korb befindet sich eine Wand 
 mit einer Höhe von 100 cm. Das Gerät muss die Aufgabe autonom absolvieren. 
