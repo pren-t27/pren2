@@ -38,7 +38,7 @@
 \smash{\begin{tikzpicture}
         \node[above right] (img) at (0,0) {\includegraphics[width=0.09\textwidth]{../doc/fig/Bild_mit_Kamera.png}};
         \ifnum\thepage>\lastpage
-            \draw[fill=yellow, draw, thick] ({\xzero + \dx}, {(\yzero+\dy) - ((\xzero + \dx) - (\xzero+\dx/2))^2 * (\dy/\dx)}) circle (0.10);
+            %\draw[fill=yellow, draw, thick] ({\xzero + \dx}, {(\yzero+\dy) - ((\xzero + \dx) - (\xzero+\dx/2))^2 * (\dy/\dx)}) circle (0.10);
         \else
             \draw[fill=yellow, draw, thick] ({\x}, {(\yzero+\dy) - (\x - (\xzero+\dx/2))^2 * (\dy/\dx)}) circle (0.10);
         \fi
