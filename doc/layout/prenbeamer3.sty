@@ -1,0 +1,47 @@
+\definecolor{presgray}{gray}{0.90}
+% \definecolor{lightgreen}{RGB}{179,255,85}
+% 
+% \setbeamercolor{alerted text}{fg=prengreen}
+% \setbeamercolor{background canvas}{bg=white}
+% \setbeamercolor{block body alerted}{bg=normal text.bg!90!black}
+\setbeamercolor{block body}{bg=presgray}
+% \setbeamercolor{block body example}{bg=normal text.bg!90!black}
+% \setbeamercolor{block title alerted}{use={normal text,alerted text},fg=alerted text.fg!75!normal text.fg,bg=normal text.bg!75!black}
+% \setbeamercolor{block title}{bg=lime,fg=black}
+% \setbeamercolor{block title example}{use={normal text,example text},fg=example text.fg!75!normal text.fg,bg=normal text.bg!75!black}
+% \setbeamercolor{fine separation line}{}
+% \setbeamercolor{frametitle}{fg=black}
+% \setbeamercolor{item projected}{fg=black}
+% \setbeamercolor{normal text}{bg=lightgreen,fg=black}
+% \setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
+% \setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
+% \setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
+% \setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+% \setbeamercolor{section in sidebar}{fg=green}
+% \setbeamercolor{section in sidebar shaded}{fg=grey}
+% \setbeamercolor{separation line}{}
+% \setbeamercolor{sidebar}{bg=red}
+% \setbeamercolor{sidebar}{parent=palette primary}
+% \setbeamercolor{structure}{bg=black, fg=green}
+% \setbeamercolor{subsection in sidebar}{fg=black}
+% \setbeamercolor{subsection in sidebar shaded}{fg=grey}
+% \setbeamercolor{title}{fg=prengreen}
+% \setbeamercolor{titlelike}{fg=prengreen}
+
+\newcommand{\lastpage}{25} % number of pages (update by hand)
+\newcommand{\xzero}{0.75} % initial x position of ball
+\newcommand{\yzero}{1.10} % initial y position of ball
+\newcommand{\dx}{4.50}
+\newcommand{\dy}{0.80}
+\newcommand{\x}{\dx*(\thepage-1)/(\lastpage-1)+\xzero}
+\setbeamertemplate{footline}[text line]{%
+\smash{\begin{tikzpicture}
+        \node[above right] (img) at (0,0) {\includegraphics[width=0.09\textwidth]{../doc/fig/Bild_mit_Kamera.png}};
+        \ifnum\thepage>\lastpage
+            %\draw[fill=yellow, draw, thick] ({\xzero + \dx}, {(\yzero+\dy) - ((\xzero + \dx) - (\xzero+\dx/2))^2 * (\dy/\dx)}) circle (0.10);
+        \else
+            \draw[fill=yellow, draw, thick] ({\x}, {(\yzero+\dy) - (\x - (\xzero+\dx/2))^2 * (\dy/\dx)}) circle (0.10);
+        \fi
+        \draw[fill=gray] (5, 0.2) -- (5.5,0.2) -- (5.6, 1.0) -- (4.9, 1.0) -- (5, 0.2);
+\end{tikzpicture}}}
+%\setbeamertemplate{navigation symbols}{}

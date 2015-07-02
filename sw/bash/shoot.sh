@@ -36,5 +36,5 @@ echo "BLDC off" > $dev
 echo "l6480 goto 0" > $dev
 sleep 1
 
-echo "BLDC sound" > $dev
+echo "BLDC sound 5" > $dev
 echo reload ...
