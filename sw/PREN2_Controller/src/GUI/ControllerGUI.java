@@ -41,7 +41,9 @@ import static org.opencv.imgproc.Imgproc.warpAffine;
  * @author Slade
  */
 public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiverListener {
-
+     Stopuhr stopWatch = new Stopuhr();
+    
+    
     ImageHandler imgHandler = new ImageHandler();
     private final MouseAdapter mouseHandler;
     java.awt.Point click_point, release_point;
@@ -129,6 +131,10 @@ public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiv
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAreaReceived = new ch.hslu.pren.bluetooth.view.JReceiverTextArea();
         jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,14 +172,14 @@ public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiv
             .addGap(0, 480, Short.MAX_VALUE)
         );
 
-        jButtonGetImage.setText("jButton1");
+        jButtonGetImage.setText("getImage");
         jButtonGetImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGetImageActionPerformed(evt);
             }
         });
 
-        jButton2.setText("jButton1");
+        jButton2.setText("doAllMagic");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -184,34 +190,62 @@ public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiv
         txtAreaReceived.setRows(5);
         jScrollPane3.setViewportView(txtAreaReceived);
 
-        jButton3.setText("s");
+        jButton3.setText("shootOnly");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
+        jButton1.setText("BLDC on");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("setRPM1400");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Zeit (in Sekunden):");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtFldCommand)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtFldCommand)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonGetImage, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(jPanelImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonGetImage, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanelImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(timeLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,14 +255,20 @@ public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiv
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonGetImage)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButtonGetImage)
+                    .addComponent(jButton1)
+                    .addComponent(jButton4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(timeLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(txtFldCommand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -248,6 +288,7 @@ public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiv
     }//GEN-LAST:event_jButtonGetImageActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        stopWatch.start();
         Mat currentImage = imgHandler.getImage();
 
         currentImage = turnMat(currentImage);
@@ -294,10 +335,14 @@ public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiv
 
         try {
             btController.shoot();
+            btController.sendCommandToDevice("BLDC setrpm 1372");
         } catch (SerialPortException ex) {
             Logger.getLogger(ControllerGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        
+        
+        
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -335,6 +380,22 @@ public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiv
             System.out.println("Shoot is häääänging");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+             btController.sendCommandToDevice("BLDC setrpm 1400");
+         } catch (SerialPortException ex) {
+             Logger.getLogger(ControllerGUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         try {
+             btController.sendCommandToDevice("BLDC on");
+         } catch (SerialPortException ex) {
+             Logger.getLogger(ControllerGUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public BufferedImage encodeImage(Mat pImage) {
         MatOfByte mem = new MatOfByte();
@@ -386,13 +447,17 @@ public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiv
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonGetImage;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelImage;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JList portList;
+    private javax.swing.JLabel timeLabel;
     private ch.hslu.pren.bluetooth.view.JReceiverTextArea txtAreaReceived;
     private javax.swing.JTextField txtFldCommand;
     // End of variables declaration//GEN-END:variables
@@ -402,13 +467,16 @@ public class ControllerGUI extends javax.swing.JFrame implements BluetoothReceiv
         System.out.println(string);
         if (string.contains("fin")) {
             System.out.println("shoot finished");
+            stopWatch.stop();
+            timeLabel.setText(stopWatch.getTime());
             try {
                 Thread.sleep(300);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ControllerGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                btController.sendCommandToDevice("BLDC sound\n");
+                btController.sendCommandToDevice("BLDC sound 5\n");
+                btController.sendCommandToDevice("stepper goto 0\n");
             } catch (SerialPortException ex) {
                 ex.printStackTrace();
             }
